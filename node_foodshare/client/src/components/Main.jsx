@@ -3,10 +3,13 @@ var SignIn = require('./authentication/SignIn.jsx');
 var SignUp = require('./authentication/SignUp.jsx');
 var SignOut = require('./authentication/SignOut.jsx');
 
+
+//does the initial state have an empty array of jobs? i.e previous saved jobs could be store here 
 var Main = React.createClass({
   getInitialState: function(){
     return{currentUser:null, jobs:[]};
   },
+
 
   setUser:function(user){
     this.setState({currentUser:user, jobs:[]});
@@ -23,7 +26,7 @@ var Main = React.createClass({
     request.onload = function(){
       if(request.status === 200){
         console.log('request.responseText', request.responseText);
-        var accounts = JSON.parse(request.responseText);
+        var jobs = JSON.parse(request.responseText);
         this.setState({jobs: jobs})
       }
     }.bind(this)
