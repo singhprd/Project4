@@ -1,6 +1,11 @@
 var React = require('react');
 
 var Main = React.createClass({
+  getInitialState: function(){
+    return{currentUser:null};
+  },
+
+  
 
   render: function(){
     return(
