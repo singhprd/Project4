@@ -46,16 +46,30 @@ var Main = React.createClass({
     request.send(null);
   },
 
-  
+  componentDidMount: function(){
+    this.fetchUser();
+  },
 
-  render: function(){
-    return(
-      <h4> Scran Share </h4>
-    )
-  }
+    render: function() {
+      var mainDiv = <div>
+        <h4> Please Sign In/Up </h4>
+        <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
+        <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
+      </div>
+      if(this.state.currentUser){
+        mainDiv = <div>
+          <h4> Welcome {this.state.currentUser.email}</h4>
+          <AccountList jobs={this.state.jobs}/>
+          <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+        </div>
+      }
+      return (
+        <div>
+          <h1> Scran Share </h1>
+          { mainDiv }
+        </div>
+      );
+    }
+  });
 
-});
-
-
-
-module.exports = Main;
+  module.exports = Main;
