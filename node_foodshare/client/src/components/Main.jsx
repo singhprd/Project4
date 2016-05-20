@@ -27,6 +27,25 @@ var Main = React.createClass({
     request.send(null);
   },
 
+  fetchUser: function(){
+    console.log("fetching user")
+    var request = new XMLHttpRequest();
+    request.open("GET", this.props.url + "users.json");
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+
+    request.onload = function(){
+      if(request.status === 200){
+        console.log('request.responseText', request.responseText);
+        var receivedUser = JSON.parse(request.responseText);
+        this.setUser(receivedUser)
+      }else if(request.status === 401){
+        this.setState({currentUser:false});
+      }
+    }.bind(this)
+    request.send(null);
+  },
+
   
 
   render: function(){
