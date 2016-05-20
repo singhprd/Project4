@@ -1,4 +1,7 @@
 var React = require('react');
+var SignIn = require('./authentication/SignIn.jsx');
+var SignUp = require('./authentication/SignUp.jsx');
+var SignOut = require('./authentication/SignOut.jsx');
 
 var Main = React.createClass({
   getInitialState: function(){
