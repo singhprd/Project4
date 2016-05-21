@@ -4,6 +4,8 @@ var SignUp = require('./authentication/SignUp.jsx');
 var SignOut = require('./authentication/SignOut.jsx');
 
 
+
+
 //does the initial state have an empty array of jobs? i.e previous saved jobs could be store here 
 var Main = React.createClass({
   getInitialState: function(){
@@ -57,6 +59,8 @@ var Main = React.createClass({
   },
 
     render: function() {
+      var jsonURL = "http://localhost:3000/jobs.json"
+
       var mainDiv = <div>
         <h4> Please Sign In/Up </h4>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
@@ -73,6 +77,7 @@ var Main = React.createClass({
         <div>
           <h1> Scran Share </h1>
           { mainDiv }
+          <a href = {jsonURL}>See some JSON data</a>
         </div>
       );
     }
