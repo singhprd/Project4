@@ -5,6 +5,8 @@ var SignOut = require('./authentication/SignOut.jsx');
 
 var sampleJSON = require('../sample.json');
 var JobList = require('./JobList');
+var GoogleMap = require('./GoogleMap');
+var Map = require('../map/googlemap');
 
 //does the initial state have an empty array of jobs? i.e previous saved jobs could be store here 
 var Main = React.createClass({
@@ -60,7 +62,12 @@ var Main = React.createClass({
 
     render: function() {
       console.log(sampleJSON);
-      var jsonURL = "http://localhost:3000/jobs.json"
+      var jsonURL = "http://localhost:3000/jobs.json";
+
+      var center = {lat:55.9520, lng: -3.1900};
+      var zoom = 14;
+      // var map = new Map(center, zoom);
+ 
 
       var mainDiv = <div>
         <h4> Please Sign In/Up </h4>
@@ -80,6 +87,7 @@ var Main = React.createClass({
           { mainDiv }
           <a href = {jsonURL}>See some JSON data</a>
           <JobList jobs={sampleJSON}/>
+          
         </div>
       );
     }
