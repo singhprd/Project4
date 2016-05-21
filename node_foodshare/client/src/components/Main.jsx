@@ -84,6 +84,7 @@ var Main = React.createClass({
           <h4> Welcome {this.state.currentUser.email}</h4>
           <JobList jobs={this.state.jobs}/>
           <Address address={this.state.jobs}/>
+          <GoogleMap center = {center}/>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
       }
