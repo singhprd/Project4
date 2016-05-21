@@ -3,8 +3,12 @@ var SignIn = require('./authentication/SignIn.jsx');
 var SignUp = require('./authentication/SignUp.jsx');
 var SignOut = require('./authentication/SignOut.jsx');
 
-var sampleJSON = require('../sample.json');
+//sample job to pass through to joblist if required:
+// var sampleJSON = require('../sample.json');
+
 var JobList = require('./JobList');
+
+//beginning attempts at newing up a google map:
 var GoogleMap = require('./GoogleMap');
 var Map = require('../map/googlemap');
 
@@ -61,7 +65,7 @@ var Main = React.createClass({
   },
 
     render: function() {
-      console.log(sampleJSON);
+     
       var jsonURL = "http://localhost:3000/jobs.json";
 
       var center = {lat:55.9520, lng: -3.1900};
@@ -77,6 +81,7 @@ var Main = React.createClass({
       if(this.state.currentUser){
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
+          <JobList jobs={this.state.jobs}/>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
       }
@@ -84,8 +89,8 @@ var Main = React.createClass({
         <div>
           <h1> Scran Share </h1>
           { mainDiv }
-          <a href = {jsonURL}>See some JSON data</a>
-          <JobList jobs={sampleJSON}/>
+          <a href = {jsonURL}>See the JSON data</a>
+          
           
         </div>
       );
