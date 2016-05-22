@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-
+  has_many :jobs
 
   def getName
     return name

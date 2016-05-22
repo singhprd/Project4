@@ -1,5 +1,7 @@
 class Courier < ActiveRecord::Base
 
+  has_many :jobs
+
   def getFirstName
     return first_name
   end
