@@ -1,6 +1,10 @@
 class Courier < ActiveRecord::Base
-
+  belongs_to :user
   has_many :jobs
+
+  def getId
+    return id
+  end
 
   def getFirstName
     return first_name

@@ -1,5 +1,10 @@
 class Company < ActiveRecord::Base
   has_many :jobs
+  belongs_to :user
+
+  def getId 
+    return id
+  end
 
   def getName
     return name

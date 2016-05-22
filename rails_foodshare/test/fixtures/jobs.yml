@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  company_id: 
+  company_id: 1
   courier_id: 
   item: Carrots
-  quantity: 1
-  instructions: MyText
+  quantity: 4
+  instructions: Open until 10:00pm. Available for pick-up 6pm-8pm
   from_date: 2016-05-22
   to_date: 2016-05-22
   type: 
@@ -14,7 +14,7 @@ two:
   company_id: 
   courier_id: 
   item: MyText
-  quantity: 1
+  quantity: 
   instructions: MyText
   from_date: 2016-05-22
   to_date: 2016-05-22

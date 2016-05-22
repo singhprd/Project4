@@ -11,4 +11,77 @@ Company.destroy_all
 Courier.destroy_all
 Job.destroy_all
 
+user_one = User.create!(
+  email: 'userOne@email.com',
+  password: 'penny12',
+  password_confirmation: 'penny12'
+)
 
+company_one = Company.create!(
+  name: "Sodeberg",
+  email: "sodeberg@email.com",
+  phone: "0131 441 1122",
+  address1: "4 West End Way",
+  address2: "West End",
+  address3: "Edinburgh",
+  postcode: "EH1 1WE",
+  lat: 1.09,
+  lng: -0.12
+)
+
+company_two = Company.create!(
+  name: "Cafe One",
+  email: "cafe@email.com",
+  phone: "0131 442 3344",
+  address1: "5 High Road",
+  address2: "Colinton",
+  address3: "Edinburgh",
+  postcode: "EH3 1WT",
+  lat: 3.09,
+  lng: -0.3456
+)
+
+courier_one = Courier.create!(
+  first_name: "Joe",
+  last_name: "Bloggs",
+  phone: 0773526262
+)
+
+courier_two = Courier.create!(
+  first_name: "Jenny",
+  last_name: "Bloggs",
+  phone: 0131213434
+)
+
+job_one = Job.create!(
+  company: company_two,
+  courier: courier_one,
+  item: "Bread",
+  quantity: 5,
+  instructions: "Bread available. Pick up between 3pm and 6pm",
+  from_date: 2016-05-22,
+  to_date: 2016-05-22,
+  category: "Supply"
+)
+
+job_two = Job.create!(
+  company: company_two,
+  courier: courier_one,
+  item: "Butter",
+  quantity: 2,
+  instructions: "Butter available. Pick up between 3pm and 6pm",
+  from_date: 2016-05-22,
+  to_date: 2016-05-22,
+  category: "Supply"
+)
+
+job_three = Job.create!(
+  company: company_one,
+  courier: courier_two,
+  item: "Bread",
+  quantity: 5,
+  instructions: "Bread needed. Please leave with reception",
+  from_date: 2016-05-22,
+  to_date: 2016-05-22,
+  category: "Demand"
+)
