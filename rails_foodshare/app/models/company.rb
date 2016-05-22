@@ -5,4 +5,8 @@ class Company < ActiveRecord::Base
     return name
   end
 
+  def getEmail
+    return email
+  end
+
 end
