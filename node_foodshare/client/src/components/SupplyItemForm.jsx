@@ -27,7 +27,7 @@ var SupplyItemForm = React.createClass({
           </div>
 
           <div className="pure-controls">
-          <button type="submit" className="pure-button pure-button-primary">Submit</button>
+          <button type="submit" className="pure-button pure-button-primary"> <i className="fa fa-check" aria-hidden="true"></i> Submit</button>
           </div>
 
         </fieldset>
