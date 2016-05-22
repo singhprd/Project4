@@ -3,3 +3,17 @@
   color: tomato;
 }
 
+#map_canvas{
+  width: 200px;
+  height: 200px;
+}
+
+/*/* not sure if this is required or not, mention of wrapping googlemap like this:*/
+
+.map{
+  position: absolute;
+  width: 300px;
+  height: 100%;
+}
+
+
