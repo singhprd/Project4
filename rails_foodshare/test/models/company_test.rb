@@ -12,5 +12,22 @@ class CompanyTest < ActiveSupport::TestCase
     assert_equal("sodeberg@email.co.uk", companies(:one).getEmail)
   end
 
+  test "has phone number" do 
+    assert_equal("0131 332 1111", companies(:one).getPhone)
+  end
+
+  test "has address line 1" do
+    assert_equal("3 WestEnd Place", companies(:one).address1)
+  end
+
+  test "can return full address" do
+    assert_equal("3 WestEnd Place, West End, Edinburgh, EH3 1RT", companies(:one).getFullAddress)
+  end
+
+  test "can return just lat" do 
+    assert_equal(1.0232, companies(:one).lat)
+  end
+
+
 
 end

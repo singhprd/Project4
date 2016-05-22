@@ -9,4 +9,12 @@ class Company < ActiveRecord::Base
     return email
   end
 
+  def getPhone
+    return phone
+  end
+
+  def getFullAddress 
+    return "#{address1}, #{address2}, #{address3}, #{postcode}"
+  end
+
 end

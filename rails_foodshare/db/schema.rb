@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522082720) do
+ActiveRecord::Schema.define(version: 20160522090324) do
 
   create_table "companies", force: :cascade do |t|
     t.text     "name"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20160522082720) do
     t.text     "address2"
     t.text     "address3"
     t.text     "postcode"
-    t.integer  "lat"
-    t.integer  "lng"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

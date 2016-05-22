@@ -3,13 +3,13 @@
 one:
   name: Sodeberg
   email: sodeberg@email.co.uk 
-  phone: MyText
-  address1: MyText
-  address2: MyText
-  address3: MyText
-  postcode: MyText
-  lat: 1
-  lng: 1
+  phone: 0131 332 1111
+  address1: 3 WestEnd Place
+  address2: West End
+  address3: Edinburgh
+  postcode: EH3 1RT
+  lat: 1.0232
+  lng: -0.4567
 
 two:
   name: MyText
