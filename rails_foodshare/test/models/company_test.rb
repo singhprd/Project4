@@ -28,6 +28,10 @@ class CompanyTest < ActiveSupport::TestCase
     assert_equal(1.0232, companies(:one).lat)
   end
 
+  test "can return both lat and lng" do 
+    assert_equal({lat: 1.0232, lng: -0.4567}, companies(:one).getLocation)
+  end
+
 
 
 end
