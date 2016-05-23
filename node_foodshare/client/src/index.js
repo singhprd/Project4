@@ -10,13 +10,6 @@ window.onload = function() {
     document.getElementById('app')
   );
 
-
-  // Quick render of form too work on layout
-  ReactDOM.render(
-    <SupplyItemForm/>, 
-    document.getElementById('test-div')
-  );
-
 };
 
 
