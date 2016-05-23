@@ -60,15 +60,15 @@ user_two = User.create!(
   email: 'userTwo@email.com',
   password: 'penny13',
   password_confirmation: 'penny13',
-  courier_id: courier_two.id
+  courier_id: courier_one.id
 )
 
 job_one = Job.create!(
-  company: company_two,
-  courier: courier_one,
+  company: company_one,
+  courier: courier_two,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread available. Pick up between 3pm and 6pm",
+  instructions: "Bread available. Pick up between 3pm and 6pm. Company 1, courier 2",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Supply",
@@ -80,7 +80,7 @@ job_two = Job.create!(
   courier: courier_one,
   item: "Butter",
   quantity: 2,
-  instructions: "Butter available. Pick up between 3pm and 6pm",
+  instructions: "Butter available. Pick up between 3pm and 6pm. Company 2, courier 1",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Supply",
@@ -89,10 +89,10 @@ job_two = Job.create!(
 
 job_three = Job.create!(
   company: company_one,
-  courier: courier_two,
+  courier: courier_one,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread needed. Please leave with reception",
+  instructions: "Bread needed. Please leave with reception. Company 1, courier 1",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Demand",

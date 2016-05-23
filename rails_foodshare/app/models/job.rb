@@ -17,15 +17,15 @@ class Job < ActiveRecord::Base
     }
   end
 
-  # def to_hash_no_company
-  #   return {
-  #     item: item,
-  #     quantity: quantity,
-  #     instructions: instructions,
-  #     from_date: from_date.iso8601,
-  #     to_date: to_date.iso8601,
-  #     category: category,
-  #     accepted: accepted
-  #   }
-  # end
+  def to_hash_no_company
+    return {
+      item: item,
+      quantity: quantity,
+      instructions: instructions,
+      from_date: from_date.iso8601,
+      to_date: to_date.iso8601,
+      category: category,
+      accepted: accepted
+    }
+  end
 end
