@@ -21,12 +21,22 @@ class JobTest < ActiveSupport::TestCase
     assert_equal("Open until 10:00pm. Available for pick-up 6pm-8pm", jobs(:one).instructions)
   end
 
-  test "has a company id" do 
+  test "has a company" do 
     assert_equal(companies(:one), jobs(:one).company)
   end
 
-  test "has an accepted field that returns a boolean value" do 
-    assert_equal(false, jobs(:one).accepted)
+  test "can get own and unclaimed jobs for a courier" do
+    assert_equal(
+      [jobs(:one), jobs(:three)].sort,
+      Job.jobs_for_user(users(:one)).sort
+    )
+  end
+
+  test "can get own jobs for a company" do
+    assert_equal(
+      [jobs(:one), jobs(:two)].sort,
+      Job.jobs_for_user(users(:two)).sort
+    )
   end
 
   # test "getCompany method brings back company details" do 
@@ -56,7 +66,6 @@ class JobTest < ActiveSupport::TestCase
       from_date: "2016-05-22",
       to_date: "2016-05-22",
       category:  "Supply",
-      accepted: false, 
       company: {
         name: "Sodeberg",
         position: {

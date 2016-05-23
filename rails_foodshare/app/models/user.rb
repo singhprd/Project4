@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   # has_many :jobs
   belongs_to :courier
   belongs_to :company
+
 end

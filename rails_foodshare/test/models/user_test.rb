@@ -11,4 +11,5 @@ class UserTest < ActiveSupport::TestCase
   # test "has password" do
   #   assert_equal("bloggs1", users(:one).password)
   # end
+
 end
