@@ -14,10 +14,11 @@
 
 /*googlemap div:*/
 #map_canvas{
-  min-width: 300px;
+  min-width: 200px;
   min-height: 300px;
-  max-width: 100%;
-  max-height: 100%;
+  /* replaced with pure styling:*/
+ /* max-width: 100%;
+  max-height: 100%;*/
 }
 
 /*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/

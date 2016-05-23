@@ -26,7 +26,7 @@ var JobList = React.createClass({
       
       return (<div>
       <li key = {index}>
-      {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} Instructions: {job.instructions}
+      {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
       </li>
       <Address address = {job.company.contactDetails}/>  
       <button onClick = {this.completedJob}>Completed</button>
