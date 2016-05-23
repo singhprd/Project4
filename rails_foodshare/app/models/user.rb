@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 #not sure on this relationship
-  has_many :jobs
+  # has_many :jobs
+  belongs_to :courier
+  belongs_to :company
 end
