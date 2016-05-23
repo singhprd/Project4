@@ -26,3 +26,9 @@ Day Three
 rack-cors
 react-addons-linked-state-mixin 
 
+- By the end of the day users can sign up/out in both react and rails. 
+- User data is persisted after sign up.
+- Created new welcome page views.
+
+We now need to create models for companies and courrier so that users can have a foreign key linking them to a company or courrier.
+

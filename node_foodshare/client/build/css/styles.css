@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+
+* {
+  font-family: 'Karla', sans-serif;
+}
+
+.content {
+    margin: 0 auto;
+    padding: 0 2em;
+    max-width: 800px;
+    margin-bottom: 50px;
+    line-height: 1.6em;
+}
+
+/*googlemap div:*/
+#map_canvas{
+  width: 200px;
+  height: 200px;
+}
+
+/*/* not sure if this is required or not, mention of wrapping googlemap like this:*/
+
+.map{
+  position: absolute;
+  width: 300px;
+  height: 100%;
+}
