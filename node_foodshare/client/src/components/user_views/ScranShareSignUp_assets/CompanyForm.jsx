@@ -15,18 +15,30 @@ var CompanyForm = React.createClass({
         }).then(function(response) {
           if(response.status == 200) {
             response.json().then(function(data){
-                var toPost = {
-                  name: this.state.companyName,
-                  lat: data.result.latitude,
-                  lng: data.result.longitude,
-                  phone: this.state.phoneNumber,
-                  email: this.state.email,
-                  address1: this.state.address1,
-                  address2: this.state.address2,
-                  address3: this.state.address3,
-                  postcode: this.state.postcode
+              var toPost = {
+                name: this.state.companyName,
+                lat: data.result.latitude,
+                lng: data.result.longitude,
+                phone: this.state.phoneNumber,
+                email: this.state.email,
+                address1: this.state.address1,
+                address2: this.state.address2,
+                address3: this.state.address3,
+                postcode: this.state.postcode
+              }
+              var request = new XMLHttpRequest();
+              request.open("POST", this.props.url+'/companies');
+              request.setRequestHeader("Content-Type", "application/json");
+              request.withCredentials = true;
+              request.onload = function(){
+                if(request.status === 200){
+                  console.log(request.responseText);
+                  window.location.reload();
+                }else {
+                  console.log("error posting company data", request.status)
                 }
-                console.log(toPost)
+              }.bind(this)              
+              request.send(JSON.stringify(toPost));
             }.bind(this))
           } else {
             this.setState({errors:"Postcode not valid"})
