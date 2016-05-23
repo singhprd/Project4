@@ -1,6 +1,20 @@
 <h1>WELCOME</h1>
-
 <%= current_user.email %>
+
+
+<h3>Links to json data:</h3>
+
+<ul>
+  <li>
+    <a href="/users">users</a>
+  </li>
+  <li>
+    <a href="/jobs">jobs</a>
+  </li>
+  <li>
+    <a href="/companies">companies</a>
+  </li>
+</ul>
 
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 

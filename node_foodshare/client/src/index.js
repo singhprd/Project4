@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Main = require('./components/Main.jsx')
+var SupplyItemForm = require('./components/SupplyItemForm.jsx')
 
 window.onload = function() {
   console.log('node server has served this js file');
@@ -8,6 +9,7 @@ window.onload = function() {
     <Main url="http://localhost:3000/"></Main>, 
     document.getElementById('app')
   );
+
 };
 
 
