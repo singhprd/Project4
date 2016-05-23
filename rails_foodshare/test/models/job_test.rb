@@ -25,6 +25,20 @@ class JobTest < ActiveSupport::TestCase
     assert_equal(companies(:one), jobs(:one).company)
   end
 
+  test "can get own and unclaimed jobs for a courier" do
+    assert_equal(
+      [jobs(:one), jobs(:three)].sort,
+      Job.jobs_for_user(users(:one)).sort
+    )
+  end
+
+  test "can get own jobs for a company" do
+    assert_equal(
+      [jobs(:one), jobs(:two)].sort,
+      Job.jobs_for_user(users(:two)).sort
+    )
+  end
+
   # test "getCompany method brings back company details" do 
   #   assert_equal({
   #         name: "Sodeberg",

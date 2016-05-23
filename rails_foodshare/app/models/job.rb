@@ -4,6 +4,19 @@ class Job < ActiveRecord::Base
 
 # should this method be able to return a string with quantity + kg/g/ml/l?
 
+
+  def self.jobs_for_user(user)
+    jobs = Job.all.to_a
+
+    jobs = jobs.select do |job|
+      ( job.courier && (job.courier == user.courier) ||
+        job.company && (job.company == user.company) ||
+        (!job.courier && user.courier)
+      )
+    end
+  end
+
+
   def to_hash
     return {
       item: item,
