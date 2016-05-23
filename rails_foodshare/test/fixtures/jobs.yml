@@ -8,7 +8,8 @@ one:
   instructions: Open until 10:00pm. Available for pick-up 6pm-8pm
   from_date: 2016-05-22
   to_date: 2016-05-22
-  type: 
+  category: Supply
+  accepted: false
 
 two:
   company_id: 
@@ -18,4 +19,4 @@ two:
   instructions: MyText
   from_date: 2016-05-22
   to_date: 2016-05-22
-  type: 
+  category: 
