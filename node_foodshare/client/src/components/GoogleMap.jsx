@@ -14,6 +14,7 @@ var GoogleMap = React.createClass({
 
     var canvas = this.refs["map_canvas"];
 
+
   //this is happening in component did mount so not sure it knows what the props are yet? in any case this needs to be a general Edinburgh center view or the location of the user:
     return (this.map = new google.maps.Map(canvas, {
       center: {
@@ -26,6 +27,19 @@ var GoogleMap = React.createClass({
 
 
 
+  },
+
+  findMe:function(){
+    var canvas = this.refs["map_canvas"];
+
+            navigator.geolocation.getCurrentPosition(function(position){
+            var currentLat = position.coords.latitude;
+            var currentLng = position.coords.longitude;
+            var userLocation = {lat: currentLat, lng: currentLng}
+            return (this.map = new google.maps.Map(canvas, {center:userLocation, zoom: 16}));
+            // map.addMarker( userLocation, "", "", "United Kingdom" );
+            })
+        
   },
 
   addMarker:function(latLng){
@@ -61,6 +75,8 @@ var GoogleMap = React.createClass({
       infoWindow.open(this.map, marker);
     });
   },
+
+
 
   componentDidMount:function(){
     this.createMap();
@@ -99,9 +115,12 @@ var GoogleMap = React.createClass({
 
     return(
       <div className= "map">
-      <h4>Map is a little bit here</h4>
+      <h4>Map</h4>
+        <button onClick = {this.findMe}>Find Me</button>
         <div ref="map_canvas" id="map_canvas">
+
         </div>
+        
 
 
       
