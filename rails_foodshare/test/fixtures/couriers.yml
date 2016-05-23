@@ -3,7 +3,7 @@
 one:
   first_name: Jenny
   last_name: Bloggs
-  phone: 07712343455
+  phone: "07712343455"
 
 two:
   first_name: MyText

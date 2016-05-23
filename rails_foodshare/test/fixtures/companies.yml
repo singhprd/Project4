@@ -4,7 +4,7 @@ one:
   id: 1
   name: Sodeberg
   email: sodeberg@email.co.uk 
-  phone: 0131 332 1111
+  phone: "0131 332 1111"
   address1: 3 WestEnd Place
   address2: West End
   address3: Edinburgh
