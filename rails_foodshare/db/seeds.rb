@@ -71,8 +71,7 @@ job_one = Job.create!(
   instructions: "Bread available. Pick up between 3pm and 6pm. Company 1, courier 2",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
-  category: "Supply",
-  accepted: false
+  category: "Supply"
 )
 
 job_two = Job.create!(
@@ -83,8 +82,7 @@ job_two = Job.create!(
   instructions: "Butter available. Pick up between 3pm and 6pm. Company 2, courier 1",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
-  category: "Supply",
-  accepted: false
+  category: "Supply"
 )
 
 job_three = Job.create!(
@@ -95,8 +93,7 @@ job_three = Job.create!(
   instructions: "Bread needed. Please leave with reception. Company 1, courier 1",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
-  category: "Demand",
-  accepted: false
+  category: "Demand"
 )
 
 job_four = Job.create!(
@@ -107,6 +104,5 @@ job_four = Job.create!(
   instructions: "Bread needed. Please leave with reception. Company 1, no courier",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
-  category: "Demand",
-  accepted: false
+  category: "Demand"
 )

@@ -9,7 +9,6 @@ one:
   from_date: <%= Date.parse("2016-05-22") %>
   to_date: <%= Date.parse("2016-05-22") %>
   category: Supply
-  accepted: false
 
 two:
   company_id: 
