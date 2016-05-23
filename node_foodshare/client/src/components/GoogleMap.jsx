@@ -63,7 +63,6 @@ var GoogleMap = React.createClass({
 //this does not work, scoping issue?
   clickInfoWindow:function(){
       console.log("info window clicked");
-     
   },
 
   //add google info window:

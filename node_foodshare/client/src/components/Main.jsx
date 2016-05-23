@@ -31,7 +31,6 @@ var Main = React.createClass({
   },
 
   fetchJobs: function(){
-    console.log("fetching jobs")
     var request = new XMLHttpRequest();
     request.open("GET", this.props.url + "jobs.json");
     request.setRequestHeader("Content-Type", "application/json");
@@ -47,7 +46,6 @@ var Main = React.createClass({
   },
 
   fetchUser: function(){
-    console.log("fetching user")
     var request = new XMLHttpRequest();
     request.open("GET", this.props.url + "users.json");
     request.setRequestHeader("Content-Type", "application/json");
@@ -82,21 +80,20 @@ var Main = React.createClass({
         )
       } else {
         if(this.state.currentUser.company_id !== null) {
-          console.log('THERE IS A COMPANY ID')
+          // USER HAS COMPANY
           mainDiv = <div>
            <CompanyView/>
             <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
             </div>
         } else if (this.state.currentUser.courier_id !== null) {
-          console.log("THERE IS A COURRIER ID")
-          console.log(this.state.jobs)
+          // USER IS A COURIER
           mainDiv = <div>
            <CourierView/>
            <GoogleMap jobs={this.state.jobs}/>
             <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
             </div>
         } else {
-          console.log("THERE IS NO ID");
+          // USER IS NOT COURIER OR COMPANY
           mainDiv = <div>
            <ScranShareSignUp url={this.props.url}/>
             <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
