@@ -36,16 +36,3 @@ var ScranShareSignUp = React.createClass({
 
 module.exports = ScranShareSignUp;
 
-// var toPost = "company": {
-//   name: "name",
-//   "lat": 55.946967,
-//   "lng": -3.202021
-//   "phone": "07700900000",
-//   "email": "hello@hello.com",
-//   "address1": "37 Castle Terrace",
-//   "address2": "Edinburgh",
-//   "address3": "",
-//   "postcode": "EH1 2EL"
-// }
-
-// params.require('company').allow(:stuff, :what)
