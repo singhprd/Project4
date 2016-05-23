@@ -14,13 +14,7 @@ var GoogleMap = React.createClass({
 
     var canvas = this.refs["map_canvas"];
 
-    // var lat = this.props.jobs.map(function(job, index){
-    //   return job.company.position.lat;
-
-    // });
-    // var lng = this.props.jobs.map(function(job, index){
-    //   return job.company.position.lng;
-    // });
+  //this is happening in component did mount so not sure it knows what the props are yet? in any case this needs to be a general Edinburgh center view or the location of the user:
     return (this.map = new google.maps.Map(canvas, {
       center: {
         "lat": 55.946967,
@@ -44,17 +38,25 @@ var GoogleMap = React.createClass({
       
   },
 
-
-  
+//this does not work, scoping issue?
+  clickInfoWindow:function(){
+      console.log("info window clicked");
+      return [];
+  },
 
 
   addInfoWindow: function( latLng, title){
     var marker = this.addMarker(latLng, "", title);
     marker.addListener('click', function(){
       var infoWindow = new google.maps.InfoWindow({
-        content: title,
+        content: "",
    
       });
+
+      //the content of info windows has to be a string:
+      infoWindow.setContent('<p>Job Details: '+title+'</p>' +
+                                           
+                          '<button onClick="this.clickInfoWindow()"> Confirm</button>');
       
       infoWindow.open(this.map, marker);
     });
@@ -82,14 +84,18 @@ var GoogleMap = React.createClass({
         return (job.company.position.lng);
     });
 
+    var jobType = this.props.jobs.map(function(job){
+        return (job.type);
+    });
+
     //taking the mapped info into 
-    var companyNameInfoWindow = companyName.toString();
+    var infoWindowContent = companyName.toString() + " " + jobType.toString();
     var companyLatMap = companyLat.pop();
     var companyLngMap = companyLng.pop();
        
     this.addMarker({lat: companyLatMap, lng: companyLngMap});
 
-    this.addInfoWindow({lat: companyLatMap, lng: companyLngMap}, companyNameInfoWindow);
+    this.addInfoWindow({lat: companyLatMap, lng: companyLngMap}, infoWindowContent);
 
     return(
       <div className= "map">
