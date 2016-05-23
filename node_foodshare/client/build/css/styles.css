@@ -14,14 +14,14 @@
 
 /*googlemap div:*/
 #map_canvas{
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
 }
 
-/*/* not sure if this is required or not, mention of wrapping googlemap like this:*/
+/*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
 
-.map{
+/*.map{
   position: absolute;
   width: 300px;
   height: 100%;
-}
+}*/

@@ -70,7 +70,7 @@ var Main = React.createClass({
       var jsonURL = "http://localhost:3000/jobs.json";
 
       var center = {lat:55.9520, lng: -3.1900};
-      var zoom = 14;
+      var zoom = 16;
       // var map = new Map(center, zoom);
  
 
