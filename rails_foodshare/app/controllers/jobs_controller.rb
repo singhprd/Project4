@@ -18,4 +18,45 @@ class JobsController < ApplicationController
     render json: jobs
   end
 
+  # def create
+  #   if !current_user.company
+  #     render :nothing => true, :status => :bad_request
+  #   else
+  #     job = Job.create(job_params)
+  #     job.update(company_id: current_user.company_id)
+  #     render json: job
+  #   end
+  # end
+
+  # def update
+  #   id = params[:id].to_i
+
+  #   if id != current_user.company_id
+  #     render nothing: true, status: :bad_request
+  #   else
+  #     company = Company.find_by(id: id)
+  #     company.update(company_params)
+  #     render json: company
+  #   end
+  # end
+
+  # def destroy
+  #   id = params[:id].to_i
+
+  #   if id != current_user.company_id
+  #     render nothing: true, status: :bad_request
+  #   else
+  #     Company.destroy(id)
+  #     current_user.update(company_id: nil)
+  #     render nothing: true, status: :ok
+  #   end
+  # end
+
+
+  # private
+  # def job_params
+  #   params.require(:job).permit()
+  # end
+
+
 end
