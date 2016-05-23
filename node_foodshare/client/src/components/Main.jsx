@@ -91,13 +91,13 @@ var Main = React.createClass({
             </div>
         } else if (this.state.currentUser.courier_id !== null) {
           console.log("THERE IS A COURRIER ID")
-          mainDiv = mainDiv = <div>
+          mainDiv = <div>
            <CourierView/>
             <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
             </div>
         } else {
           console.log("THERE IS NO ID");
-          mainDiv = mainDiv = <div>
+          mainDiv = <div>
            <ScranShareSignUp/>
             <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
             </div>
