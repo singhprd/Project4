@@ -4,10 +4,27 @@ var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var CourierForm = React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState: function() {
-    return {first_name: '', last_name: '', phone_number: ''};
+    return {first_name: '', last_name: '', phone: ''};
   },
   handleSubmit: function(e){
-    e.preventDefault();
+    // e.preventDefault();
+    var request = new XMLHttpRequest();
+    request.open("POST", this.props.url+'/couriers');
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.onload = function(){
+      if(request.status === 201){
+        console.log(request.responseText);
+      }else {
+        console.log("error posting courier data", request.status)
+      }
+    }.bind(this)
+    var data = {
+      first_name:this.state.first_name,
+      last_name:this.state.last_name,
+      phone:this.state.phone
+    }
+    request.send(JSON.stringify(data));
   },
   render: function() {
     return (
@@ -28,8 +45,8 @@ var CourierForm = React.createClass({
           </div>
 
           <div className="pure-control-group">
-            <label for="phone_number">Phone Number</label>
-            <input valueLink={this.linkState('phone_number')} id="phone_number" type="text" placeholder="Phone Number"/>
+            <label for="phone">Phone Number</label>
+            <input valueLink={this.linkState('phone')} id="phone" type="text" placeholder="Phone Number"/>
           </div>
 
           <div className="pure-controls">

@@ -98,7 +98,7 @@ var Main = React.createClass({
         } else {
           console.log("THERE IS NO ID");
           mainDiv = <div>
-           <ScranShareSignUp/>
+           <ScranShareSignUp url={this.props.url}/>
             <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
             </div>
         }

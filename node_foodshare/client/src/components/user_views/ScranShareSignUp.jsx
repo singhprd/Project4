@@ -17,10 +17,10 @@ var ScranShareSignUp = React.createClass({
       mainDisplay = <ButtonFilter selectType={this.selectType}/>
     }
     if(this.state.typeToDisplay === "company") {
-      mainDisplay = <CompanyForm selectType={this.selectType}/>
+      mainDisplay = <CompanyForm url={this.props.url} selectType={this.selectType}/>
     }
     if(this.state.typeToDisplay === "courier") {
-      mainDisplay = <CourierForm selectType={this.selectType}/>
+      mainDisplay = <CourierForm url={this.props.url} selectType={this.selectType}/>
     }
     return (
       <div> 
