@@ -17,17 +17,15 @@ var ScranShareSignUp = React.createClass({
       mainDisplay = <ButtonFilter selectType={this.selectType}/>
     }
     if(this.state.typeToDisplay === "company") {
-      console.log("com")
       mainDisplay = <CompanyForm selectType={this.selectType}/>
     }
     if(this.state.typeToDisplay === "courier") {
-      console.log("crrr")
       mainDisplay = <CourierForm selectType={this.selectType}/>
     }
     return (
       <div> 
         
-        <h1>ScranShareSignUp</h1>
+        <h1>Who are you?</h1>
         {mainDisplay}
       </div>
       )

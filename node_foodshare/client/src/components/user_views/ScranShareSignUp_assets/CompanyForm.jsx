@@ -26,6 +26,7 @@ var CompanyForm = React.createClass({
                   address3: this.state.address3,
                   postcode: this.state.postcode
                 }
+                console.log(toPost)
             }.bind(this))
           } else {
             this.setState({errors:"Postcode not valid"})
@@ -37,14 +38,14 @@ var CompanyForm = React.createClass({
       render: function() {
         return (
           <div>
-          <button value="none" onClick={this.props.selectType} type="submit" className="pure-button pure-button-primary"> <i className="fa fa-check" aria-hidden="true"> </i> Go Back! </button>
+          <button value="none" onClick={this.props.selectType} type="submit" className="pure-button pure-button-primary"> <i className="fa fa-arrow-left" aria-hidden="true"> </i> Go Back! </button>
 
           <form className="pure-form pure-form-aligned">
           <fieldset>
 
           <div className="pure-control-group">
           <label for="companyName">Company Name</label>
-          <input valueLink={this.linkState('companyName')}  id="companyName" type="text" placeholder="Company Name"/>
+          <input valueLink={this.linkState('companyName')} id="companyName" type="text" placeholder="Company Name"/>
           </div>
 
           <div className="pure-control-group">
