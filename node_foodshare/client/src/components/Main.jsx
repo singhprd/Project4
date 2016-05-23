@@ -7,6 +7,7 @@ var SignOut = require('./authentication/SignOut.jsx');
 // var sampleJSON = require('../sample.json');
 
 var JobList = require('./JobList');
+var Address = require('./Address');
 
 //beginning attempts at newing up a google map:
 var GoogleMap = require('./GoogleMap');
@@ -69,7 +70,7 @@ var Main = React.createClass({
       var jsonURL = "http://localhost:3000/jobs.json";
 
       var center = {lat:55.9520, lng: -3.1900};
-      var zoom = 14;
+      var zoom = 16;
       // var map = new Map(center, zoom);
  
 
@@ -82,6 +83,8 @@ var Main = React.createClass({
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
           <JobList jobs={this.state.jobs}/>
+          <Address address={this.state.jobs}/>
+          <GoogleMap coords = {center} zoom = {zoom}/>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
       }

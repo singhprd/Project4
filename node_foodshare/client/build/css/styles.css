@@ -11,3 +11,17 @@
     margin-bottom: 50px;
     line-height: 1.6em;
 }
+
+/*googlemap div:*/
+#map_canvas{
+  width: 300px;
+  height: 300px;
+}
+
+/*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
+
+/*.map{
+  position: absolute;
+  width: 300px;
+  height: 100%;
+}*/
