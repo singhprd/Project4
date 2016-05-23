@@ -11,11 +11,7 @@ Company.destroy_all
 Courier.destroy_all
 Job.destroy_all
 
-user_one = User.create!(
-  email: 'userOne@email.com',
-  password: 'penny12',
-  password_confirmation: 'penny12'
-)
+
 
 company_one = Company.create!(
   name: "Sodeberg",
@@ -51,6 +47,20 @@ courier_two = Courier.create!(
   first_name: "Jenny",
   last_name: "Bloggs",
   phone: 0131213434
+)
+
+user_one = User.create!(
+  email: 'userOne@email.com',
+  password: 'penny12',
+  password_confirmation: 'penny12',
+  company_id: company_one.id
+)
+
+user_two = User.create!(
+  email: 'userTwo@email.com',
+  password: 'penny13',
+  password_confirmation: 'penny13',
+  courier_id: courier_two.id
 )
 
 job_one = Job.create!(

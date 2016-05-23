@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   has_many :jobs
-  belongs_to :user
+  has_many :users
 
   def getId 
     return id

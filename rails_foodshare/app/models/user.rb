@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 
 #not sure on this relationship
   # has_many :jobs
-  has_many :couriers
-  has_many :companies
+  belongs_to :courier
+  belongs_to :company
 end
