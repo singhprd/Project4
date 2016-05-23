@@ -26,4 +26,22 @@ class Company < ActiveRecord::Base
     return {lat: lat, lng: lng}
   end
 
+  def to_hash_no_jobs
+    return {
+      name: name,
+      position: {
+        lat: lat,
+        lng: lng
+      },
+      contactDetails: {
+        email: email,
+        phone: phone,
+        address1: address1,
+        address2: address2,
+        address3: address3,
+        postcode: postcode
+      }
+    }
+  end
+
 end

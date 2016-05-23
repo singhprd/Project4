@@ -26,7 +26,7 @@ class JobTest < ActiveSupport::TestCase
   end
 
   test "has an accepted field that returns a boolean value" do 
-    assert_equal(false, jobs(:one).hasBeenAccepted)
+    assert_equal(false, jobs(:one).accepted)
   end
 
   # test "getCompany method brings back company details" do 
@@ -50,12 +50,12 @@ class JobTest < ActiveSupport::TestCase
   test "can build a job object which includes company information" do
 
     expected = { 
-      item: "Carrots", 
-      quantity: 4, 
+      item: "Carrots",
+      quantity: 4,
       instructions: "Open until 10:00pm. Available for pick-up 6pm-8pm",
       from_date: "2016-05-22",
       to_date: "2016-05-22",
-      type:  "Supply",
+      category:  "Supply",
       accepted: false, 
       company: {
         name: "Sodeberg",
@@ -63,7 +63,7 @@ class JobTest < ActiveSupport::TestCase
           lat: 1.0232,
           lng: -0.4567
         },
-        contact_details: {
+        contactDetails: {
           email: "sodeberg@email.co.uk",
           phone: "0131 332 1111",
           address1: "3 WestEnd Place",
@@ -75,7 +75,7 @@ class JobTest < ActiveSupport::TestCase
     }
 
     assert_equal(
-     expected, jobs(:one).buildJob
+     expected, jobs(:one).to_hash
     )
   end
 
