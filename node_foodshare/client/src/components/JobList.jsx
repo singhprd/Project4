@@ -24,8 +24,8 @@ var JobList = React.createClass({
         method = " delivered to ";
       }
       
-      return (<div>
-      <li key = {index}>
+      return (<div key={index}>
+      <li>
       {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
       </li>
       <Address address = {job.company.contactDetails}/>  
