@@ -1,3 +1,5 @@
 *.app
 
 startServers.app/
+
+*.log

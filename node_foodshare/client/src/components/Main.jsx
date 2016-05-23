@@ -2,6 +2,10 @@ var React = require('react');
 var SignIn = require('./authentication/SignIn.jsx');
 var SignUp = require('./authentication/SignUp.jsx');
 var SignOut = require('./authentication/SignOut.jsx');
+var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
+var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
+var CompanyView = require('./user_views/CompanyView.jsx')
+var CourierView = require('./user_views/CourierView.jsx')
 
 //sample job to pass through to joblist if required:
 // var sampleJSON = require('../sample.json');
@@ -34,7 +38,6 @@ var Main = React.createClass({
 
     request.onload = function(){
       if(request.status === 200){
-        console.log('request.responseText', request.responseText);
         var jobs = JSON.parse(request.responseText);
         this.setState({jobs: jobs})
       }
@@ -51,7 +54,6 @@ var Main = React.createClass({
 
     request.onload = function(){
       if(request.status === 200){
-        console.log('request.responseText', request.responseText);
         var receivedUser = JSON.parse(request.responseText);
         this.setUser(receivedUser)
       }else if(request.status === 401){
@@ -66,38 +68,59 @@ var Main = React.createClass({
   },
 
     render: function() {
-     
-      var jsonURL = "http://localhost:3000/jobs.json";
 
+      var jsonURL = "http://localhost:3000/jobs.json";
       var center = {lat:55.9520, lng: -3.1900};
       var zoom = 16;
-      // var map = new Map(center, zoom);
- 
+      // var map = new Map(center, zoom); 
 
-      var mainDiv = <div>
+      var mainDiv = null;
+
+      if(!this.state.currentUser) {
+        mainDiv = <div>
         <h4> Please Sign In/Up </h4>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
         <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
-      </div>
-      if(this.state.currentUser){
-        mainDiv = <div>
-          <h4> Welcome {this.state.currentUser.email}</h4>
-          <JobList jobs={this.state.jobs}/>
-          <Address address={this.state.jobs}/>
-          <GoogleMap coords = {center} zoom = {zoom}/>
-          <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
+      } else {
+        if(this.state.currentUser.company_id !== null) {
+          console.log('THERE IS A COMPANY ID')
+          mainDiv = <div>
+           <CompanyView/>
+            <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+            </div>
+        } else if (this.state.currentUser.courier_id !== null) {
+          console.log("THERE IS A COURRIER ID")
+          mainDiv = mainDiv = <div>
+           <CourierView/>
+            <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+            </div>
+        } else {
+          console.log("THERE IS NO ID");
+          mainDiv = mainDiv = <div>
+           <ScranShareSignUp/>
+            <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+            </div>
+        }
       }
+
       return (
         <div>
           <h1> Scran Share </h1>
           { mainDiv }
-          <a href = {jsonURL}>See the JSON data</a>
-          
-          
+          <a href = {jsonURL}>See the JSON data</a>        
         </div>
       );
     }
   });
 
   module.exports = Main;
+
+
+      //     mainDiv = <div>
+      //   <h4> Welcome {this.state.currentUser.email}</h4>
+      //   <JobList jobs={this.state.jobs}/>
+      //   <Address address={this.state.jobs}/>
+      //   <GoogleMap coords = {center} zoom = {zoom}/>
+        // <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+      // </div>
