@@ -6,12 +6,13 @@ var SignOut = require('./authentication/SignOut.jsx');
 //sample job to pass through to joblist if required:
 // var sampleJSON = require('../sample.json');
 
+//child components:
 var JobList = require('./JobList');
-var Address = require('./Address');
+var GoogleMap = require('./GoogleMap');
 
 //beginning attempts at newing up a google map:
-var GoogleMap = require('./GoogleMap');
-var Map = require('../map/googlemap');
+
+// var Map = require('../map/googlemap');
 
 //does the initial state have an empty array of jobs? i.e previous saved jobs could be store here 
 var Main = React.createClass({
@@ -80,7 +81,6 @@ var Main = React.createClass({
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
           <JobList jobs={this.state.jobs}/>
-          <Address address={this.state.jobs}/>
           <GoogleMap jobs = {this.state.jobs}/>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
