@@ -98,3 +98,15 @@ job_three = Job.create!(
   category: "Demand",
   accepted: false
 )
+
+job_four = Job.create!(
+  company: company_one,
+  courier: nil,
+  item: "Bread",
+  quantity: 5,
+  instructions: "Bread needed. Please leave with reception. Company 1, no courier",
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
+  category: "Demand",
+  accepted: false
+)
