@@ -50,16 +50,16 @@ courier_two = Courier.create!(
 )
 
 user_one = User.create!(
-  email: 'userOne@email.com',
-  password: 'penny12',
-  password_confirmation: 'penny12',
+  email: 'company@test.com',
+  password: 'password',
+  password_confirmation: 'password',
   company_id: company_one.id
 )
 
 user_two = User.create!(
-  email: 'userTwo@email.com',
-  password: 'penny13',
-  password_confirmation: 'penny13',
+  email: 'courier@test.com',
+  password: 'password',
+  password_confirmation: 'password',
   courier_id: courier_one.id
 )
 

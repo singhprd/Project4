@@ -5,15 +5,15 @@ class CompanyTest < ActiveSupport::TestCase
   #   assert true
   # end
   test "has a name" do 
-    assert_equal("Sodeberg", companies(:one).getName)
+    assert_equal("Sodeberg", companies(:one).name)
   end
 
   test "has an email" do 
-    assert_equal("sodeberg@email.co.uk", companies(:one).getEmail)
+    assert_equal("sodeberg@email.co.uk", companies(:one).email)
   end
 
   test "has phone number" do 
-    assert_equal("0131 332 1111", companies(:one).getPhone)
+    assert_equal("0131 332 1111", companies(:one).phone)
   end
 
   test "has address line 1" do
