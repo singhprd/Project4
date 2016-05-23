@@ -1,7 +1,7 @@
 var React = require('react');
 
 // var Map = require('../map/googlemap');
-
+var JobList = require('./JobList');
 
 var GoogleMap = React.createClass({
 
@@ -148,9 +148,9 @@ var GoogleMap = React.createClass({
         <div ref="map_canvas" id="map_canvas">
 
         </div>
-        
-
-
+        <div>
+        <JobList jobs={this.props.jobs}/>
+        </div>
       
 
 

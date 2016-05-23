@@ -80,7 +80,6 @@ var Main = React.createClass({
       if(this.state.currentUser){
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
-          <JobList jobs={this.state.jobs}/>
           <GoogleMap jobs = {this.state.jobs}/>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
