@@ -39,7 +39,7 @@ var GoogleMap = React.createClass({
             // return (this.map = new google.maps.Map(canvas, {center:userLocation, zoom: 16}));
             // this.addMarker( userLocation);
 
-            var marker = this.addMarker(userLocation, "images/purple-marker.png");
+            var marker = this.addMarker(userLocation, "images/green-arrow.png");
             marker.addListener('click', function(){
               var myInfoWindow = new google.maps.InfoWindow({
                 content: "I am here"
