@@ -66,7 +66,7 @@ var GoogleMap = React.createClass({
 //this does not work, scoping issue?
   clickInfoWindow:function(){
       console.log("info window clicked");
-      return [];
+     
   },
 
 
@@ -79,9 +79,10 @@ var GoogleMap = React.createClass({
       });
 
       //the content of info windows has to be a string:
-      infoWindow.setContent('<p>Job Details: '+title+'</p>' +
+      infoWindow.setContent('<p>Job Details: '+title+'</p>');
+      // infoWindow.setContent('<p>Job Details: '+title+'</p>' +
                                            
-                          '<button onClick="this.clickInfoWindow()"> Confirm</button>');
+      //                     '<button onClick="this.clickInfoWindow()"> Confirm</button>');
       
       infoWindow.open(this.map, marker);
     });
@@ -108,38 +109,13 @@ var GoogleMap = React.createClass({
       //getting the company name and category for each job and populating the info window with these details:
       var companyName = job.company.name;
       var jobType = job.category;
-      var infoWindowContent = companyName.toString() + " " + jobType.toString();
+      var location = job.company.contactDetails.address1;
+      var infoWindowContent = companyName.toString() + " " + jobType.toString() + ' at ' + location + '<button onclick="this.clickInfoWindow()"> Confirm</button>';
       return this.addInfoWindow({lat: companyLat, lng: companyLng}, infoWindowContent);
 
     }.bind(this));
 
 
-    //old way of doing it:
-
-    // var companyName = this.props.jobs.map(function(job){
-    //     return (job.company.name);
-    // });
-
-    // var companyLat = this.props.jobs.map(function(job){
-    //     return (job.company.position.lat);
-    // });
-
-    // var companyLng = this.props.jobs.map(function(job){
-    //     return (job.company.position.lng);
-    // });
-
-    // var jobType = this.props.jobs.map(function(job){
-    //     return (job.category);
-    // });
-
-    //taking the mapped info into 
-    // var infoWindowContent = companyName.toString() + " " + jobType.toString();
-    // var companyLatMap = companyLat.pop();
-    // var companyLngMap = companyLng.pop();
-       
-    // this.addMarker({lat: companyLatMap, lng: companyLngMap});
-
-    // this.addInfoWindow({lat: companyLatMap, lng: companyLngMap}, infoWindowContent);
 
     return(
       <div className= "map">
