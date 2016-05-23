@@ -40,39 +40,38 @@ company_two = Company.create!(
 courier_one = Courier.create!(
   first_name: "Joe",
   last_name: "Bloggs",
-  phone: 0773526262
+  phone: "0773526262"
 )
 
 courier_two = Courier.create!(
   first_name: "Jenny",
   last_name: "Bloggs",
-  phone: 0131213434
+  phone: "0131213434"
 )
 
 user_one = User.create!(
-  email: 'userOne@email.com',
-  password: 'penny12',
-  password_confirmation: 'penny12',
+  email: 'company@test.com',
+  password: 'password',
+  password_confirmation: 'password',
   company_id: company_one.id
 )
 
 user_two = User.create!(
-  email: 'userTwo@email.com',
-  password: 'penny13',
-  password_confirmation: 'penny13',
-  courier_id: courier_two.id
+  email: 'courier@test.com',
+  password: 'password',
+  password_confirmation: 'password',
+  courier_id: courier_one.id
 )
 
 job_one = Job.create!(
-  company: company_two,
-  courier: courier_one,
+  company: company_one,
+  courier: courier_two,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread available. Pick up between 3pm and 6pm",
-  from_date: 2016-05-22,
-  to_date: 2016-05-22,
-  category: "Supply",
-  accepted: false
+  instructions: "Bread available. Pick up between 3pm and 6pm. Company 1, courier 2",
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
+  category: "Supply"
 )
 
 job_two = Job.create!(
@@ -80,21 +79,30 @@ job_two = Job.create!(
   courier: courier_one,
   item: "Butter",
   quantity: 2,
-  instructions: "Butter available. Pick up between 3pm and 6pm",
-  from_date: 2016-05-22,
-  to_date: 2016-05-22,
-  category: "Supply",
-  accepted: false
+  instructions: "Butter available. Pick up between 3pm and 6pm. Company 2, courier 1",
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
+  category: "Supply"
 )
 
 job_three = Job.create!(
   company: company_one,
-  courier: courier_two,
+  courier: courier_one,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread needed. Please leave with reception",
-  from_date: 2016-05-22,
-  to_date: 2016-05-22,
-  category: "Demand",
-  accepted: false
+  instructions: "Bread needed. Please leave with reception. Company 1, courier 1",
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
+  category: "Demand"
+)
+
+job_four = Job.create!(
+  company: company_one,
+  courier: nil,
+  item: "Bread",
+  quantity: 5,
+  instructions: "Bread needed. Please leave with reception. Company 1, no courier",
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
+  category: "Demand"
 )

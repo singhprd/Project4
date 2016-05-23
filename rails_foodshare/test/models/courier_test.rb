@@ -17,7 +17,7 @@ class CourierTest < ActiveSupport::TestCase
   end
 
   test "has a phone number" do 
-    assert_equal(07712343455, couriers(:one).getPhoneNumber)
+    assert_equal("07712343455", couriers(:one).getPhoneNumber)
   end
 
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :jobs
   resources :companies
+  resources :couriers
   resources :users
   resources :welcome
   # The priority is based upon order of creation: first created -> highest priority.

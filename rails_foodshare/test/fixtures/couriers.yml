@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   first_name: Jenny
   last_name: Bloggs
-  phone: 07712343455
+  phone: "07712343455"
 
 two:
+  id: 2
   first_name: MyText
   last_name: MyText
-  phone: 1
+  phone: "1"

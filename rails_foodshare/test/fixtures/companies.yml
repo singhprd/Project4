@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: Sodeberg
   email: sodeberg@email.co.uk 
-  phone: 0131 332 1111
+  phone: "0131 332 1111"
   address1: 3 WestEnd Place
   address2: West End
   address3: Edinburgh
@@ -12,6 +13,7 @@ one:
   lng: -0.4567
 
 two:
+  id: 2
   name: MyText
   email: MyText
   phone: MyText
