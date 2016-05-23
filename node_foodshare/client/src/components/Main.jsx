@@ -69,9 +69,6 @@ var Main = React.createClass({
      
       var jsonURL = "http://localhost:3000/jobs.json";
 
-      var center = {lat:55.9520, lng: -3.1900};
-      var zoom = 16;
-      // var map = new Map(center, zoom);
  
 
       var mainDiv = <div>
@@ -84,7 +81,7 @@ var Main = React.createClass({
           <h4> Welcome {this.state.currentUser.email}</h4>
           <JobList jobs={this.state.jobs}/>
           <Address address={this.state.jobs}/>
-          <GoogleMap coords = {center} zoom = {zoom}/>
+          <GoogleMap jobs = {this.state.jobs}/>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
       }
