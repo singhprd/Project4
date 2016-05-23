@@ -40,13 +40,13 @@ company_two = Company.create!(
 courier_one = Courier.create!(
   first_name: "Joe",
   last_name: "Bloggs",
-  phone: 0773526262
+  phone: "0773526262"
 )
 
 courier_two = Courier.create!(
   first_name: "Jenny",
   last_name: "Bloggs",
-  phone: 0131213434
+  phone: "0131213434"
 )
 
 user_one = User.create!(
@@ -69,8 +69,8 @@ job_one = Job.create!(
   item: "Bread",
   quantity: 5,
   instructions: "Bread available. Pick up between 3pm and 6pm",
-  from_date: 2016-05-22,
-  to_date: 2016-05-22,
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
   category: "Supply",
   accepted: false
 )
@@ -81,8 +81,8 @@ job_two = Job.create!(
   item: "Butter",
   quantity: 2,
   instructions: "Butter available. Pick up between 3pm and 6pm",
-  from_date: 2016-05-22,
-  to_date: 2016-05-22,
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
   category: "Supply",
   accepted: false
 )
@@ -93,8 +93,8 @@ job_three = Job.create!(
   item: "Bread",
   quantity: 5,
   instructions: "Bread needed. Please leave with reception",
-  from_date: 2016-05-22,
-  to_date: 2016-05-22,
+  from_date: Date.parse("2016-05-22"),
+  to_date: Date.parse("2016-05-22"),
   category: "Demand",
   accepted: false
 )

@@ -6,8 +6,8 @@ one:
   item: Carrots
   quantity: 4
   instructions: Open until 10:00pm. Available for pick-up 6pm-8pm
-  from_date: 2016-05-22
-  to_date: 2016-05-22
+  from_date: <%= Date.parse("2016-05-22") %>
+  to_date: <%= Date.parse("2016-05-22") %>
   category: Supply
   accepted: false
 
@@ -17,6 +17,6 @@ two:
   item: MyText
   quantity: 
   instructions: MyText
-  from_date: 2016-05-22
-  to_date: 2016-05-22
+  from_date: <%= Date.parse("2016-05-22") %>
+  to_date: <%= Date.parse("2016-05-22") %>
   category: 
