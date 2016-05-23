@@ -7,6 +7,8 @@ var SignUp = React.createClass({
   getInitialState: function(){
     return {email:"", password:"", passwordConfirmation:""};
   },
+
+  
   signIn:function(e){
     e.preventDefault();
     var request = new XMLHttpRequest();
