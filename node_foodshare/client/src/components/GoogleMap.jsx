@@ -47,6 +47,7 @@ var GoogleMap = React.createClass({
         });
         myInfoWindow.open(this.map, marker);
       })
+      this.map.setCenter(marker.getPosition());
     }.bind(this))        
   },
 
