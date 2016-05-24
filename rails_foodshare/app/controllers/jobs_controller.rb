@@ -24,7 +24,7 @@ class JobsController < ApplicationController
     else
       job = Job.create(job_params)
       job.update(company_id: current_user.company_id)
-      render json: job
+      render json: job.to_hash_for_company
     end
   end
 
@@ -46,7 +46,7 @@ class JobsController < ApplicationController
       render nothing: true, status: :forbidden
     else
       job.update(job_params)
-      render json: job
+      render json: job.to_hash_for_company
     end
   end
 
