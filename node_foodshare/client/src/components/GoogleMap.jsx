@@ -91,9 +91,11 @@ var GoogleMap = React.createClass({
         // console.log("latlng: ", latLng)
         if(job.company.position.lat == latLng.lat){
           // console.log("reached here")
-          return jobForViewing =job;
+          jobForViewing.push(job);
           
         }
+
+        return jobForViewing;
       }.bind(this))
       this.setState({ showInfoButton: true, showJobList: false, jobMarker: jobForViewing});
       }.bind(this));
@@ -111,10 +113,15 @@ var GoogleMap = React.createClass({
     this.createMap();
        
   },
+
+  // handleTakeJob: function(job){
+
+  // },
   
 
 
   render:function(){
+    
     //mapping the jobs to show information on map for each one:
     this.props.jobs.map(function(job){
       //getting the lat and lng for each job and displaying marker for that location on the map:
@@ -142,11 +149,11 @@ var GoogleMap = React.createClass({
 
         </div>
         <div>
-        { this.state.showJobList ? <JobList jobs={this.props.jobs} /> : null }
+        { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} /> : null }
        
         </div>
         <div>
-        { this.state.showInfoButton ? <InfoButton job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
+        { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
         </div>
       
       </div>

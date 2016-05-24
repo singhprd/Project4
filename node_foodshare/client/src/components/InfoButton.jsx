@@ -1,14 +1,26 @@
 var React = require('react');
+var JobList = require('./JobList');
 
 var InfoButton = React.createClass({
 
 handleCloseClick:function(){
   return this.props.onCloseClick();
-
-
 },
 
-  
+
+displayJobDetails: function(jobs){  
+  if(jobs.length > 1){
+    this.displayMultipleJobs(jobs)
+  } else {
+    this.displayOneJob(jobs)
+  }
+},
+
+
+
+
+
+  // {this.displayJobDetails(this.props.job)}
 
 render:function(){
   var clickInfoWindow = function(){
@@ -17,19 +29,7 @@ render:function(){
 
   return (
           <div id = "my-info-window">
-          <h3>Job</h3>
-          <h4>Company Details</h4>
-          <p>{this.props.job.company.name}</p>
-          <ul>
-            <li>{this.props.job.company.contactDetails.address1}, {this.props.job.company.contactDetails.postcode}</li>
-            <li>{this.props.job.company.contactDetails.phone}</li>
-            <li>{this.props.job.company.contactDetails.email}</li>
-          </ul>
-          <h4>Job Type: {this.props.job.category}</h4>
-          <ul>
-            <li>{this.props.job.quantity} x {this.props.job.item}</li>
-            <li>{this.props.job.instructions}</li>
-          </ul>
+          <JobList onTakeJob={this.props.onTakeJob} jobs = {this.props.job}/>
           <button onClick = {this.handleCloseClick}>Close</button>
           </div>  
   )
