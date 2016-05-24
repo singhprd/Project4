@@ -20,7 +20,6 @@
   margin-bottom: 50px;
   line-height: 1.6em;
   margin-top: 32px;
-  border: solid black 1px;
 }
 
 /*googlemap div:*/
@@ -60,6 +59,7 @@
     top: 0;
     left: 0;
     width: 100vw;
+    z-index: 1;
   }
 
   /* Remove margins and padding from the list, and add a black background color */
@@ -110,6 +110,7 @@
       top: 0;
       left: 0;
       width: 100vw;
+      z-index: 1;
     }
     ul.topnav.responsive li.icon {
       position: absolute;

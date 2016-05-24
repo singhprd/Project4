@@ -118,7 +118,6 @@ var GoogleMap = React.createClass({
 
     return(
       <div className= "map">
-      <h4>Map</h4>
         <button onClick = {this.revealJobs}>See Jobs</button>
         <button onClick = {this.findMe}>Find Me</button>
         <div className = "pure-u-1-1" ref="map_canvas" id="map_canvas">

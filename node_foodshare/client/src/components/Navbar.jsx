@@ -26,8 +26,8 @@ var Navbar = React.createClass({
       <div> 
       <ul className="topnav">
       <li><a href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#news">Placeholder</a></li>
+      <li><a href="#contact">Placeholder</a></li>
       <li><a onClick={this.signOut} href="#about">Sign Out</a></li>
 
       <li className="icon">

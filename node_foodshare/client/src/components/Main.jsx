@@ -99,20 +99,10 @@ var Main = React.createClass({
 
       return (
         <div>
-          <h1> Scran Share </h1>
           { mainDiv }
         </div>
       );
     }
   });
 
-  module.exports = Main;
-
-
-      //     mainDiv = <div>
-      //   <h4> Welcome {this.state.currentUser.email}</h4>
-      //   <JobList jobs={this.state.jobs}/>
-      //   <Address address={this.state.jobs}/>
-      //   <GoogleMap coords = {center} zoom = {zoom}/>
-        // <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
-      // </div>
+module.exports = Main;
