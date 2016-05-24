@@ -67,7 +67,9 @@ var GoogleMap = React.createClass({
 
   setJobMarkerEmpty:function(){
     
-    return this.setState({showInfoButton: false});
+   this.setState({showInfoButton: false});
+   //too much?
+   location.reload(true);
   },
   
 
