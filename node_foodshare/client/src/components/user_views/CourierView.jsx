@@ -13,7 +13,6 @@ var CourierView = React.createClass({
     this.setState({currentView: view});
   },
   handleTakeJob:function(job){
-    console.log(this.props.user);
     var updateUrl = this.props.url + "jobs/" + job.id;
     var object = {accepted: true};
     var request = new XMLHttpRequest();
@@ -21,11 +20,9 @@ var CourierView = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.send(JSON.stringify(object));
-    
   },
 
   handleCancelJob:function(job){
-    console.log("hello");
     var updateUrl = this.props.url + "jobs/" + job.id;  
     var object = {accepted: false};
     var request = new XMLHttpRequest();

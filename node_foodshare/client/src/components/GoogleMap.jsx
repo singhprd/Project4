@@ -1,8 +1,5 @@
 var React = require('react');
-var ReactDOMServer = require('react-dom/server');
 
-
-// var Map = require('../map/googlemap');
 var JobList = require('./JobList');
 var InfoButton = require('./InfoButton');
 
@@ -23,7 +20,7 @@ var GoogleMap = React.createClass({
   createMap:function(){
     var canvas = this.refs["map_canvas"];
 
-  //this is happening in component did mount so not sure it knows what the props are yet? in any case this needs to be a general Edinburgh center view or the location of the user:
+  //default map position is Edinburgh city centre, map has to be created in component will mount:
     return (this.map = new google.maps.Map(canvas, {
       center: {
         "lat": 55.946967,
@@ -66,16 +63,6 @@ var GoogleMap = React.createClass({
       });
       return marker;      
   },
-
-//this does not work, scoping issue?
-
-
-  // renderInfoWindow:function(){
-      
-        
-  // },
-
-
 
   setJobMarkerEmpty:function(){
     
@@ -121,8 +108,8 @@ var GoogleMap = React.createClass({
       // this.addMarker({lat: companyLat, lng: companyLng}, image);
 
       return this.addInfoWindow({lat: companyLat, lng: companyLng}, image);
-
     }.bind(this));
+
   },  
   
 
