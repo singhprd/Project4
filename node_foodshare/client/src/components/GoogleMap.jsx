@@ -13,7 +13,9 @@ var GoogleMap = React.createClass({
 
   //initial state of JobList component is not visible:
   getInitialState: function(){
-    return {showJobList: false, showInfoButton: false, jobMarker: []
+    return {showJobList: false,
+            showInfoButton: false,
+            jobMarker: []
     }
   },
   
@@ -82,8 +84,8 @@ var GoogleMap = React.createClass({
   
 
   //add google info window:
-  addInfoWindow: function( latLng){
-    var marker = this.addMarker(latLng, "");
+  addInfoWindow: function( latLng, image){
+    var marker = this.addMarker(latLng, image);
     marker.addListener('click', function(){
       var jobForViewing = [];
       this.props.jobs.filter(function(job){
@@ -102,6 +104,26 @@ var GoogleMap = React.createClass({
  
       
     },
+
+  addMarkersForJobs:function(){
+    //mapping the jobs to show information on map for each one:
+    this.props.jobs.map(function(job){
+      //getting the lat and lng for each job and displaying marker for that location on the map:
+      var companyLat = job.company.position.lat;
+      var companyLng = job.company.position.lng; 
+      var image;
+      if (job.courier_id === null){
+        image = "images/green_marker.png";
+      }
+      if (job.courier_id !== null){
+        image = null;
+      }
+      // this.addMarker({lat: companyLat, lng: companyLng}, image);
+
+      return this.addInfoWindow({lat: companyLat, lng: companyLng}, image);
+
+    }.bind(this));
+  },  
   
 
   //method to show JobList component:
@@ -116,16 +138,7 @@ var GoogleMap = React.createClass({
 
   render:function(){
     
-    //mapping the jobs to show information on map for each one:
-    this.props.jobs.map(function(job){
-      //getting the lat and lng for each job and displaying marker for that location on the map:
-      var companyLat = job.company.position.lat;
-      var companyLng = job.company.position.lng; 
-      this.addMarker({lat: companyLat, lng: companyLng});
-
-      return this.addInfoWindow({lat: companyLat, lng: companyLng});
-
-    }.bind(this));
+   this.addMarkersForJobs();
 
     return(
       <div className= "map">

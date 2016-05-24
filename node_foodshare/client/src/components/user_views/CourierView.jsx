@@ -20,7 +20,8 @@ var CourierView = React.createClass({
     request.open("PUT", updateUrl, true);
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
-    request.send(JSON.stringify(object))
+    request.send(JSON.stringify(object));
+    
   },
 
   handleCancelJob:function(job){
