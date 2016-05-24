@@ -16,18 +16,22 @@ var CompanyNavbar = React.createClass({
     }.bind(this)
     request.send(null);
   },
-  toggleClassNames: function(e) {
-    e.preventDefault();
+  toggleClassNames: function() {
     /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
     document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+  },
+  handleClick: function(e) {
+    e.preventDefault();
+    this.props.changeView(e.target.value);
+    this.toggleClassNames();
   },
   render: function() {
     return (
       <div> 
       <ul className="topnav">
       <li><a href="#home">Home</a></li>
-      <li><a onClick={this.props.changeView} value="foodForm" href="#Food Form">Food Form</a></li>
-      <li><a onClick={this.props.changeView} value="donations" href="#Donations">Donations</a></li>
+      <li><a onClick={this.handleClick} value="foodForm" href="#Food Form">Food Form</a></li>
+      <li><a onClick={this.handleClick} value="donations" href="#Donations">Donations</a></li>
       <li><a onClick={this.signOut} href="#about">Sign Out</a></li>
 
       <li className="icon">

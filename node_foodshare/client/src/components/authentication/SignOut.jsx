@@ -7,7 +7,6 @@ var SignOut = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.onload = function(){
-      console.log('signed out', request.status)
       if(request.status === 204){
         this.props.onSignOut(null);
       }else if(request.status === 401){

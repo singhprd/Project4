@@ -27,6 +27,7 @@
 #map_canvas{
   min-width: 200px;
   min-height: 300px;
+
  /* position:absolute;
   left:0;
   right:0;*/
@@ -44,6 +45,16 @@
   }
 }
 
+#my-info-window{
+  min-height: 200px;
+  min-width: 200px;
+  max-width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+
+}
 
 /*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
 

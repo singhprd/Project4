@@ -9,8 +9,8 @@ var CompanyView = React.createClass({
   getInitialState: function() {
     return {currentView: "foodForm"}
   },
-  changeView: function(e) {
-    this.setState({currentView: e.target.value});
+  changeView: function(view) {
+    this.setState({currentView: view});
   },
   render: function() {
     var toDisplay;
