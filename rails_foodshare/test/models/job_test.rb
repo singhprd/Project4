@@ -82,7 +82,8 @@ class JobTest < ActiveSupport::TestCase
           address3: "Edinburgh",
           postcode: "EH3 1RT"
         }
-      }
+      },
+      completed_date: nil
     }
 
     assert_equal(
@@ -90,7 +91,7 @@ class JobTest < ActiveSupport::TestCase
     )
   end
 
-test "can return a hash with info for company view" do
+  test "can return a hash with info for company view" do
 
     expected = {
       id: 1,
@@ -104,7 +105,8 @@ test "can return a hash with info for company view" do
         first_name: "Jenny",
         last_name: "Bloggs",
         phone: "07712343455"
-      }
+      },
+      completed_date: nil
     }
 
     assert_equal(
@@ -112,5 +114,12 @@ test "can return a hash with info for company view" do
     )
   end
 
+  # test "can assign a courier to an unclaimed job" do
+  #   job = jobs(:three) # job with no courier_id
+  #   courier = couriers(:one)
+
+  #   job.set_courier(courier)
+  #   assert_equal(courier.id, job.courier_id)
+  # end
 
 end

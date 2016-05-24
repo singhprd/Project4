@@ -27,7 +27,8 @@ class Job < ActiveRecord::Base
       to_date: to_date.iso8601,
       category: category,
       courier_id: courier_id,
-      company: company ? company.to_hash : nil
+      company: company ? company.to_hash : nil,
+      completed_date: completed_date
     }
   end
 
@@ -40,7 +41,12 @@ class Job < ActiveRecord::Base
       from_date: from_date.iso8601,
       to_date: to_date.iso8601,
       category: category,
-      courier: courier ? courier.to_hash : nil
+      courier: courier ? courier.to_hash : nil,
+      completed_date: completed_date
     }
   end
+
+  # def set_courier(courier)
+
+  # end
 end
