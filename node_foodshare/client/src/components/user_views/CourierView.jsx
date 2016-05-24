@@ -6,14 +6,24 @@ var GoogleMap = require('../GoogleMap');
 var CourierView = React.createClass({
 
   handleTakeJob:function(job){
-    console.log("job to take", job)
+    console.log(this.props.user);
     var updateUrl = this.props.url + "jobs/" + job.id;
-    job.courier_id = this.props.user.courier_id;
-    console.log(job)
+    var object = {accepted: true};
     var request = new XMLHttpRequest();
     request.open("PUT", updateUrl, true);
     request.setRequestHeader("Content-Type", "application/json");
-    request.send(JSON.stringify(job))
+    request.withCredentials = true;
+    request.send(JSON.stringify(object))
+  },
+
+  handleCancelJob:function(job){
+    var updateUrl = this.props.url + "jobs/" + job.id;  
+    var object = {accepted: false};
+    var request = new XMLHttpRequest();
+    request.open("PUT", updateUrl, true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.send(JSON.stringify(object))
   },
 
   render: function() {
