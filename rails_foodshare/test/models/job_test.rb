@@ -90,7 +90,7 @@ class JobTest < ActiveSupport::TestCase
     )
   end
 
-test "can return a hash with info for company view" do
+  test "can return a hash with info for company view" do
 
     expected = {
       id: 1,
@@ -112,5 +112,12 @@ test "can return a hash with info for company view" do
     )
   end
 
+  # test "can assign a courier to an unclaimed job" do
+  #   job = jobs(:three) # job with no courier_id
+  #   courier = couriers(:one)
+
+  #   job.set_courier(courier)
+  #   assert_equal(courier.id, job.courier_id)
+  # end
 
 end

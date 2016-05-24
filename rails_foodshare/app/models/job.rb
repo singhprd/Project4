@@ -43,4 +43,8 @@ class Job < ActiveRecord::Base
       courier: courier ? courier.to_hash : nil
     }
   end
+
+  # def set_courier(courier)
+    
+  # end
 end

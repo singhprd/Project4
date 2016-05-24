@@ -51,6 +51,30 @@ class JobsController < ApplicationController
   end
 
   def update_by_courier
+    id = params[:id].to_i
+    job = Job.find(id)
+
+    accepted = params[:accepted]
+    completed = params[:completed]
+
+    if !accepted.nil? && !completed.nil?
+      render text: 'Please include either an "accepted" or a "completed" field, but not both.', status: :bad_request
+    elsif !accepted.nil?
+      if accepted == true && !job.courier_id
+        job.update(courier_id: current_user.courier_id)
+        render json: job.to_hash_for_courier
+      elsif accepted == false && job.courier_id == current_user.courier_id
+        job.update(courier_id: nil)
+        render json: job.to_hash_for_courier
+      else
+        render nothing: true, status: :bad_request
+      end
+    elsif !completed.nil?
+      # if completed && job.courier_id == current_user.courier_id && job.
+    else
+      render text: 'Please include either an "accepted" or a "completed" field.', status: :bad_request
+    end
+
   end
 
   # def destroy
