@@ -1,7 +1,10 @@
 var React = require('react');
+var ReactDOMServer = require('react-dom/server');
+
 
 // var Map = require('../map/googlemap');
 var JobList = require('./JobList');
+var InfoButton = require('./InfoButton');
 
 var GoogleMap = React.createClass({
 
@@ -10,7 +13,8 @@ var GoogleMap = React.createClass({
 
   //initial state of JobList component is not visible:
   getInitialState: function(){
-    return {showJobList: false};
+    return {showJobList: false, showInfoButton: false, jobMarker: []
+    }
   },
   
 
@@ -62,32 +66,45 @@ var GoogleMap = React.createClass({
   },
 
 //this does not work, scoping issue?
-  clickInfoWindow:function(){
-      console.log("info window clicked");
+
+
+  // renderInfoWindow:function(){
+      
+        
+  // },
+
+
+
+  setJobMarkerEmpty:function(){
+    
+    return this.setState({showInfoButton: false});
   },
+  
 
   //add google info window:
-  addInfoWindow: function( latLng, title){
-    var marker = this.addMarker(latLng, "", title);
+  addInfoWindow: function( latLng){
+    var marker = this.addMarker(latLng, "");
     marker.addListener('click', function(){
-      var infoWindow = new google.maps.InfoWindow({
-        content: ""
-      });
-
-    //the content of info windows has to be a string:
-    infoWindow.setContent('<p>Job Details: '+title+'</p>');
-    //i originally put button onclick here but have moved it to render:
-      // infoWindow.setContent('<p>Job Details: '+title+'</p>' +
-                                           
-      // '<button onClick="this.clickInfoWindow()"> Confirm</button>');
+      var jobForViewing = [];
+      this.props.jobs.filter(function(job){
+        console.log("job: ", job)
+        // console.log("latlng: ", latLng)
+        if(job.company.position.lat == latLng.lat){
+          // console.log("reached here")
+          return jobForViewing =job;
+          
+        }
+      }.bind(this))
+      this.setState({ showInfoButton: true, showJobList: false, jobMarker: jobForViewing});
+      }.bind(this));
+ 
       
-      infoWindow.open(this.map, marker);
-    });
-  },
+    },
+  
 
   //method to show JobList component:
   revealJobs:function(){
-      this.setState({ showJobList: true});
+      this.setState({ showJobList: true, showInfoButton:false});
   },
 
   componentDidMount:function(){
@@ -105,12 +122,13 @@ var GoogleMap = React.createClass({
       var companyLng = job.company.position.lng; 
       this.addMarker({lat: companyLat, lng: companyLng});
       
-      //getting the company name and category for each job and populating the info window with these details. Button not working:
-      var companyName = job.company.name;
-      var jobType = job.category;
-      var location = job.company.contactDetails.address1;
-      var infoWindowContent = companyName.toString() + " " + "(" + jobType.toString() + ")" + ' at ' + location + '<button onclick="this.revealJobs()"> Confirm</button>';
-      return this.addInfoWindow({lat: companyLat, lng: companyLng}, infoWindowContent);
+      // var companyName = job.company.name;
+      // var jobType = job.category; 
+      // //getting the company name and category for each job and populating the info window with these details. Button not working:
+      // var jobDetails = companyName.toString() + jobType.toString();
+      // this.setState({jobMarker: jobDetails});
+      
+      return this.addInfoWindow({lat: companyLat, lng: companyLng});
 
     }.bind(this));
 
@@ -126,6 +144,9 @@ var GoogleMap = React.createClass({
         <div>
         { this.state.showJobList ? <JobList jobs={this.props.jobs} /> : null }
        
+        </div>
+        <div>
+        { this.state.showInfoButton ? <InfoButton job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
         </div>
       
       </div>
