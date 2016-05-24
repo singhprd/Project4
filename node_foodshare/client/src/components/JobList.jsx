@@ -49,7 +49,7 @@ var JobList = React.createClass({
       </li>
       <Address address = {job.company.contactDetails}/>  
       <button onClick = {this.takeJob} value = {index}>Take Job</button>
-      <button onClick = {this.cancelledJob} value = {index}>Cancel</button>
+      <button onClick = {this.cancelledJob} value = {index}>Cancel My Job</button>
     
       </div>)
     }.bind(this))
