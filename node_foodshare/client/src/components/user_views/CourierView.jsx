@@ -41,7 +41,7 @@ var CourierView = React.createClass({
         toDisplay = <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob} cancelJob={this.handleCancelJob}/>
       break;
       case "showalljobs":
-        toDisplay = <JobList jobs={this.props.jobs}>Jobs</JobList>
+        toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob}>Jobs</JobList>
       break;
       default:
         console.log("default")
