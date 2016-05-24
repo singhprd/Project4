@@ -17,7 +17,7 @@ var SignOut = React.createClass({
   },
   render: function() {
     return (
-      <button className="pure-button pure-button-primary" onClick={this.signOut}>Sign Out</button>
+      <button className="pure-button pure-button-primary" onClick={this.signOut}> <i className="fa fa-sign-out" aria-hidden="true"> </i> Sign Out</button>
     );
   }
 });

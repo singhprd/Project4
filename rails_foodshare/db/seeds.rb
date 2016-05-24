@@ -21,8 +21,8 @@ company_one = Company.create!(
   address2: "West End",
   address3: "Edinburgh",
   postcode: "EH1 1WE",
-  lat: 1.09,
-  lng: -0.12
+  lat: 55.951060,
+  lng: -3.209982
 )
 
 company_two = Company.create!(
@@ -33,8 +33,8 @@ company_two = Company.create!(
   address2: "Colinton",
   address3: "Edinburgh",
   postcode: "EH3 1WT",
-  lat: 3.09,
-  lng: -0.3456
+  lat: 55.947250,
+  lng: -3.191335
 )
 
 courier_one = Courier.create!(

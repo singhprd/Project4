@@ -2,16 +2,20 @@ var React = require('react');
 var SignIn = require('./authentication/SignIn.jsx');
 var SignUp = require('./authentication/SignUp.jsx');
 var SignOut = require('./authentication/SignOut.jsx');
-
+var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
+var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
+var CompanyView = require('./user_views/CompanyView.jsx')
+var CourierView = require('./user_views/CourierView.jsx')
 //sample job to pass through to joblist if required:
 // var sampleJSON = require('../sample.json');
 
+//child components:
 var JobList = require('./JobList');
-var Address = require('./Address');
+var GoogleMap = require('./GoogleMap');
 
 //beginning attempts at newing up a google map:
-var GoogleMap = require('./GoogleMap');
-var Map = require('../map/googlemap');
+
+// var Map = require('../map/googlemap');
 
 //does the initial state have an empty array of jobs? i.e previous saved jobs could be store here 
 var Main = React.createClass({
@@ -26,7 +30,6 @@ var Main = React.createClass({
   },
 
   fetchJobs: function(){
-    console.log("fetching jobs")
     var request = new XMLHttpRequest();
     request.open("GET", this.props.url + "jobs.json");
     request.setRequestHeader("Content-Type", "application/json");
@@ -34,7 +37,6 @@ var Main = React.createClass({
 
     request.onload = function(){
       if(request.status === 200){
-        console.log('request.responseText', request.responseText);
         var jobs = JSON.parse(request.responseText);
         this.setState({jobs: jobs})
       }
@@ -43,7 +45,6 @@ var Main = React.createClass({
   },
 
   fetchUser: function(){
-    console.log("fetching user")
     var request = new XMLHttpRequest();
     request.open("GET", this.props.url + "users.json");
     request.setRequestHeader("Content-Type", "application/json");
@@ -51,7 +52,6 @@ var Main = React.createClass({
 
     request.onload = function(){
       if(request.status === 200){
-        console.log('request.responseText', request.responseText);
         var receivedUser = JSON.parse(request.responseText);
         this.setUser(receivedUser)
       }else if(request.status === 401){
@@ -66,38 +66,43 @@ var Main = React.createClass({
   },
 
     render: function() {
-     
-      var jsonURL = "http://localhost:3000/jobs.json";
 
-      var center = {lat:55.9520, lng: -3.1900};
-      var zoom = 16;
-      // var map = new Map(center, zoom);
- 
+      var mainDiv = null;
 
-      var mainDiv = <div>
-        <h4> Please Sign In/Up </h4>
-        <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
-        <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
-      </div>
-      if(this.state.currentUser){
-        mainDiv = <div>
-          <h4> Welcome {this.state.currentUser.email}</h4>
-          <JobList jobs={this.state.jobs}/>
-          <Address address={this.state.jobs}/>
-          <GoogleMap coords = {center} zoom = {zoom}/>
-          <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
-        </div>
+      if(!this.state.currentUser) {
+        mainDiv = (
+          <div>
+            <h4> Please Sign In/Up </h4>
+            <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
+            <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
+          </div>
+        )
+      } else {
+        if(this.state.currentUser.company_id !== null) {
+          // USER HAS COMPANY
+          mainDiv = <div>
+           <CompanyView url={this.props.url} onSignOut={this.setUser}/>
+            </div>
+        } else if (this.state.currentUser.courier_id !== null) {
+          // USER IS A COURIER
+          mainDiv = <div>
+           <CourierView url={this.props.url} jobs={this.state.jobs} onSignOut={this.setUser}/>
+            </div>
+        } else {
+          // USER IS NOT COURIER OR COMPANY
+          mainDiv = <div>
+           <ScranShareSignUp url={this.props.url}/>
+            <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+            </div>
+        }
       }
+
       return (
         <div>
-          <h1> Scran Share </h1>
           { mainDiv }
-          <a href = {jsonURL}>See the JSON data</a>
-          
-          
         </div>
       );
     }
   });
 
-  module.exports = Main;
+module.exports = Main;

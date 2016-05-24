@@ -1,6 +1,6 @@
 var React = require('react');
 
-
+var Address = require('./Address');
 
 var JobList = React.createClass({
 
@@ -17,17 +17,18 @@ var JobList = React.createClass({
   render:function(){
     var jobs = this.props.jobs.map(function(job, index){
       var method;
-      if (job.type === "supply"){
+      if (job.category === "Supply"){
         method = " collected from ";
       }
-      if (job.type === "demand"){
+      if (job.category === "Demand"){
         method = " delivered to ";
       }
       
-      return (<div>
-      <li key = {index}>
-      {job. quantity} x {job.item} to be {method} {job.company.name} from {job.fromDate} to {job.toDate} Instructions: {job.instructions}
+      return (<div key={index}>
+      <li>
+      {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
       </li>
+      <Address address = {job.company.contactDetails}/>  
       <button onClick = {this.completedJob}>Completed</button>
       <button onClick = {this.cancelledJob}>Cancel</button>
     
