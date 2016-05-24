@@ -88,20 +88,19 @@ class JobsController < ApplicationController
     else
       render text: 'Please include either an "accepted" or a "completed" field.', status: :bad_request
     end
-
   end
 
-  # def destroy
-  #   id = params[:id].to_i
+  def destroy
+    id = params[:id].to_i
+    job = Job.find(id)
 
-  #   if id != current_user.company_id
-  #     render nothing: true, status: :bad_request
-  #   else
-  #     Company.destroy(id)
-  #     current_user.update(company_id: nil)
-  #     render nothing: true, status: :ok
-  #   end
-  # end
+    if job.company_id != current_user.company_id
+      render nothing: true, status: :forbidden
+    else
+      job.destroy
+      render nothing: true, status: :ok
+    end
+  end
 
 
   private
