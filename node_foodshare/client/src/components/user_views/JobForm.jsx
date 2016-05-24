@@ -12,7 +12,7 @@ var SupplyItemForm = React.createClass({
     handleSubmit: function(e){
     e.preventDefault();
     var request = new XMLHttpRequest();
-    request.open("POST", this.props.url+'/jobs');
+    request.open("POST", this.props.url+'jobs');
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.onload = function(){
