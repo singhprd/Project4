@@ -51,6 +51,16 @@ var SupplyItemForm = React.createClass({
             <input valueLink={this.linkState('instructions')} id="instructions" type="text" placeholder="instructions"/>
           </div>
 
+          <div className="pure-control-group">
+            <label for="from_date">from_date</label>
+            <input valueLink={this.linkState('from_date')} id="from_date" type="date" placeholder="from_date"/>
+          </div>
+          <div className="pure-control-group">
+            <label for="to_date">to_date</label>
+            <input valueLink={this.linkState('to_date')} id="to_date" type="date" placeholder="to_date"/>
+          </div>
+
+
           <div className="pure-controls">
           <button onClick={this.handleSubmit} type="submit" className="pure-button pure-button-primary"> <i className="fa fa-check" aria-hidden="true"></i> Submit</button>
           </div>

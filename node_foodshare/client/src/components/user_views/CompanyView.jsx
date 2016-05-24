@@ -3,6 +3,7 @@ var SignOut = require('../authentication/SignOut.jsx');
 var JobForm = require('./JobForm.jsx');
 var CompanyNavbar = require('../CompanyNavbar.jsx')
 var ShowAllJobs = require('../ShowAllJobs.jsx')
+// var DatePicker = require('../DatePicker.jsx')
 
 var CompanyView = React.createClass({
   getInitialState: function() {
@@ -18,10 +19,11 @@ var CompanyView = React.createClass({
         toDisplay = <JobForm url={this.props.url}/>
         break;
       case "donations":
+        // toDisplay   = <DatePicker/>
         toDisplay = <ShowAllJobs jobs={this.props.jobs}>Donations</ShowAllJobs>
         break;
       default:
-        console.log("default")
+        toDisplay = <div />
     }
 
     return (
