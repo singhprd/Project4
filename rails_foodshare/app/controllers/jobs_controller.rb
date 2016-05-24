@@ -7,38 +7,51 @@ class JobsController < ApplicationController
 
     if current_user.courier
       jobs = jobs.map do |job|
-        job.to_hash
+        job.to_hash_for_courier
       end
     elsif current_user.company
       jobs = jobs.map do |job|
-        job.to_hash_no_company
+        job.to_hash_for_company
       end
     end
 
     render json: jobs
   end
 
-  # def create
-  #   if !current_user.company
-  #     render :nothing => true, :status => :bad_request
-  #   else
-  #     job = Job.create(job_params)
-  #     job.update(company_id: current_user.company_id)
-  #     render json: job
-  #   end
-  # end
+  def create
+    if !current_user.company
+      render :nothing => true, :status => :forbidden
+    else
+      job = Job.create(job_params)
+      job.update(company_id: current_user.company_id)
+      render json: job
+    end
+  end
 
-  # def update
-  #   id = params[:id].to_i
+  def update
+    if current_user.company_id
+      update_by_company
+    elsif current_user.courier_id
+      update_by_courier
+    else
+      render nothing: true, status: :forbidden
+    end
+  end
 
-  #   if id != current_user.company_id
-  #     render nothing: true, status: :bad_request
-  #   else
-  #     company = Company.find_by(id: id)
-  #     company.update(company_params)
-  #     render json: company
-  #   end
-  # end
+  def update_by_company
+    id = params[:id].to_i
+    job = Job.find(id)
+
+    if job.company_id != current_user.company_id
+      render nothing: true, status: :forbidden
+    else
+      job.update(job_params)
+      render json: job
+    end
+  end
+
+  def update_by_courier
+  end
 
   # def destroy
   #   id = params[:id].to_i
@@ -53,10 +66,9 @@ class JobsController < ApplicationController
   # end
 
 
-  # private
-  # def job_params
-  #   params.require(:job).permit()
-  # end
-
+  private
+  def job_params
+    params.require(:job).permit(:item, :quantity, :instructions, :from_date, :to_date, :category)
+  end
 
 end

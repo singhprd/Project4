@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
     id = params[:id].to_i
 
     if id != current_user.company_id
-      render nothing: true, status: :bad_request
+      render nothing: true, status: :forbidden
     else
       company = Company.find_by(id: id)
       company.update(company_params)
@@ -31,7 +31,7 @@ class CompaniesController < ApplicationController
     id = params[:id].to_i
 
     if id != current_user.company_id
-      render nothing: true, status: :bad_request
+      render nothing: true, status: :forbidden
     else
       Company.destroy(id)
       current_user.update(company_id: nil)
@@ -45,35 +45,4 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name, :lat, :lng, :phone, :email, :address1, :address2, :address3, :postcode)
   end
 
-  # def index
-  #   companies = [
-  #     {
-  #       "name" => "CodeClan",
-  #       "position" => {
-  #         "lat" => 55.946967,
-  #         "lng" => -3.202021
-  #       },
-  #       "contactDetails" => {
-  #         "phone" => "07700900000",
-  #         "email" => "hello@hello.com",
-  #         "address1" => "37 Castle Terrace",
-  #         "address2" => "Edinburgh",
-  #         "address3" => "",
-  #         "postcode" => "EH1 2EL"
-  #       },
-  #       "jobs" => [
-  #         {
-  #           "item" => "couscous",
-  #           "quantity" => 5,
-  #           "instructions" => "Use buzzer at back entrance, ask for Alistair",
-  #           "fromDate" => "2016-05-22",
-  #           "toDate" => "2016-05-23",
-  #           "type" => "supply",
-  #           "accepted" => false
-  #         }
-  #       ]
-  #     }
-  #   ]
-  #   render json: companies
-  # end
 end
