@@ -111,14 +111,8 @@ var GoogleMap = React.createClass({
 
   componentDidMount:function(){
     this.createMap();
-       
+    this.render();
   },
-
-  // handleTakeJob: function(job){
-
-  // },
-  
-
 
   render:function(){
     
@@ -128,18 +122,10 @@ var GoogleMap = React.createClass({
       var companyLat = job.company.position.lat;
       var companyLng = job.company.position.lng; 
       this.addMarker({lat: companyLat, lng: companyLng});
-      
-      // var companyName = job.company.name;
-      // var jobType = job.category; 
-      // //getting the company name and category for each job and populating the info window with these details. Button not working:
-      // var jobDetails = companyName.toString() + jobType.toString();
-      // this.setState({jobMarker: jobDetails});
-      
+
       return this.addInfoWindow({lat: companyLat, lng: companyLng});
 
     }.bind(this));
-
-
 
     return(
       <div className= "map">

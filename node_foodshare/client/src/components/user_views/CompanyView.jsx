@@ -1,15 +1,35 @@
 var React = require('react');
 var SignOut = require('../authentication/SignOut.jsx');
-var SupplyItemForm = require('./SupplyItemForm.jsx');
-var Navbar = require('../navbar.jsx')
+var JobForm = require('./JobForm.jsx');
+var CompanyNavbar = require('../CompanyNavbar.jsx')
+var ShowAllJobs = require('../ShowAllJobs.jsx')
+// var DatePicker = require('../DatePicker.jsx')
 
 var CompanyView = React.createClass({
+  getInitialState: function() {
+    return {currentView: "foodForm"}
+  },
+  changeView: function(view) {
+    this.setState({currentView: view});
+  },
   render: function() {
+    var toDisplay;
+    switch(this.state.currentView) {
+      case "foodForm":
+        toDisplay = <JobForm url={this.props.url}/>
+        break;
+      case "donations":
+        // toDisplay   = <DatePicker/>
+        toDisplay = <ShowAllJobs jobs={this.props.jobs}>Donations</ShowAllJobs>
+        break;
+      default:
+        toDisplay = <div />
+    }
+
     return (
       <div> 
-        <h1>CompanyView</h1>
-        <Navbar url={this.props.url} onSignOut={this.props.onSignOut}></Navbar>
-        <SupplyItemForm/>
+        <CompanyNavbar changeView={this.changeView} url={this.props.url} onSignOut={this.props.onSignOut}></CompanyNavbar>
+        {toDisplay}
       </div>
       )
   }

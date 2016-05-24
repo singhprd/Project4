@@ -81,7 +81,7 @@ var Main = React.createClass({
         if(this.state.currentUser.company_id !== null) {
           // USER HAS COMPANY
           mainDiv = <div>
-           <CompanyView url={this.props.url} onSignOut={this.setUser}/>
+           <CompanyView url={this.props.url} onSignOut={this.setUser} company={this.state.currentUser} jobs={this.state.jobs}/>
             </div>
         } else if (this.state.currentUser.courier_id !== null) {
           // USER IS A COURIER
