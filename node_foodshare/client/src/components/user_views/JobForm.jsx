@@ -6,27 +6,29 @@ var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 var SupplyItemForm = React.createClass({
     mixins: [LinkedStateMixin],
+
     getInitialState: function() {
       return {item:'',instructions:'',quantity:''}
     },
+
     handleSubmit: function(e){
-    e.preventDefault();
-    var request = new XMLHttpRequest();
-    request.open("POST", this.props.url+'jobs');
-    request.setRequestHeader("Content-Type", "application/json");
-    request.withCredentials = true;
-    request.onload = function(){
-      if(request.status === 200){
-        console.log(request.responseText);
-      }else {
-        console.log("error posting job data", request.status)
+      e.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open("POST", this.props.url+'jobs');
+      request.setRequestHeader("Content-Type", "application/json");
+      request.withCredentials = true;
+      request.onload = function(){
+        if(request.status === 200){
+          console.log(request.responseText);
+        }else {
+          console.log("error posting job data", request.status)
+        }
+      }.bind(this)
+      var data = {
+        instructions:this.state.instructions,
+        quantity:this.state.quantity,
+        item:this.state.item
       }
-    }.bind(this)
-    var data = {
-      instructions:this.state.instructions,
-      quantity:this.state.quantity,
-      item:this.state.item
-    }
     request.send(JSON.stringify(data));
   },
   render: function() {
@@ -34,7 +36,6 @@ var SupplyItemForm = React.createClass({
       <div>
         <form className="pure-form pure-form-aligned">
         <fieldset>
-
           <div className="pure-control-group">
             <label for="item">item</label>
             <input  valueLink={this.linkState('item')} id="item" type="text" placeholder="item"/>
@@ -55,9 +56,9 @@ var SupplyItemForm = React.createClass({
           </div>
 
         </fieldset>
-        </form>
-      </div>
-      )
+      </form>
+    </div>
+    )
   }
 });
 
