@@ -8,7 +8,6 @@ var CompanyNavbar = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.onload = function(){
-      console.log('signed out', request.status)
       if(request.status === 204){
         this.props.onSignOut(null);
       }else if(request.status === 401){
@@ -29,7 +28,7 @@ var CompanyNavbar = React.createClass({
     return (
       <div> 
       <ul className="topnav">
-      <li><a href="#home">Home</a></li>
+      <li id="navbar-scranshare">ScranShare</li>
       <li><a onClick={this.handleClick} value="foodForm" href="#Food Form">Food Form</a></li>
       <li><a onClick={this.handleClick} value="donations" href="#Donations">Donations</a></li>
       <li><a onClick={this.signOut} href="#about">Sign Out</a></li>

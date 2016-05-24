@@ -8,7 +8,6 @@ var Navbar = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.onload = function(){
-      console.log('signed out', request.status)
       if(request.status === 204){
         this.props.onSignOut(null);
       }else if(request.status === 401){
@@ -25,14 +24,7 @@ var Navbar = React.createClass({
     return (
       <div> 
       <ul className="topnav">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#news">Placeholder</a></li>
-      <li><a href="#contact">Placeholder</a></li>
-      <li><a onClick={this.signOut} href="#about">Sign Out</a></li>
-
-      <li className="icon">
-      <a onClick={this.toggleClassNames}>&#9776;</a>
-      </li>
+        <li id="navbar-scranshare">ScranShare</li>
       </ul>
       </div>
       )

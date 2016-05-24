@@ -11,10 +11,13 @@ var SupplyItemForm = React.createClass({
   mixins: [LinkedStateMixin],
 
   getInitialState: function() {
-    return {item:'',instructions:'',quantity:'', from_date: '', to_date: '', error:''}
+    return {item:'',instructions:'',quantity:'', from_date: '', to_date: '', error:'', submited:false}
   },
-
+  resetForm: function() {
+    this.setState({item:'',instructions:'',quantity:'', from_date: '', to_date: '', error:'', submited:false});
+  },
   handleSubmit: function(e){
+    e.preventDefault();
     var a = new Date(this.state.from_date);
     var b = new Date(this.state.to_date);
 
@@ -23,29 +26,34 @@ var SupplyItemForm = React.createClass({
       this.setState({error:"Check Dates are valid"})
       return
     }
-      e.preventDefault();
-      var request = new XMLHttpRequest();
-      request.open("POST", this.props.url+'jobs');
-      request.setRequestHeader("Content-Type", "application/json");
-      request.withCredentials = true;
-      request.onload = function(){
-        if(request.status === 200){
-          console.log(request.responseText);
-        }else {
-          console.log("error posting job data", request.status)
-        }
-      }.bind(this)
-      var data = {
-        instructions:this.state.instructions,
-        quantity:this.state.quantity,
-        item:this.state.item,
-        from_date: this.state.from_date,
-        to_date: this.state.to_date
+    var request = new XMLHttpRequest();
+    request.open("POST", this.props.url+'jobs');
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.onload = function(){
+      if(request.status === 200){
+        console.log(request.responseText);
+        this.setState({submited: true});
+      }else {
+        console.log("error posting job data", request.status)
       }
-    // request.send(JSON.stringify(data));
+    }.bind(this)
+    var data = {
+      instructions:this.state.instructions,
+      quantity:this.state.quantity,
+      item:this.state.item,
+      from_date: this.state.from_date,
+      to_date: this.state.to_date
+    }
+    request.send(JSON.stringify(data));
   },
   render: function() {
-    return (
+      var toReturn;
+      var SubmittedView = (<div>
+        <p>Awesome, thats submitted!</p>
+        <button onClick={this.resetForm} className="pure-button button-success"> <i className="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+        </div>)
+      var FormView = (
       <div>
       <form className="pure-form pure-form-aligned">
       <fieldset>
@@ -76,12 +84,19 @@ var SupplyItemForm = React.createClass({
       <div className="pure-controls">
       <button onClick={this.handleSubmit} type="submit" className="pure-button pure-button-primary"> <i className="fa fa-check" aria-hidden="true"></i> Submit</button>
       </div>
-
       </fieldset>
       </form>
       {this.state.error}
       </div>
       )
+
+      if(this.state.submited) {
+        toReturn = SubmittedView;
+      } else {
+        toReturn = FormView;
+      }
+
+      return <div>{toReturn}</div>
   }
 });
 

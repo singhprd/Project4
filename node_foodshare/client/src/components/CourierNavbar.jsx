@@ -8,7 +8,6 @@ var CourierNavbar = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.onload = function(){
-      console.log('signed out', request.status)
       if(request.status === 204){
         this.props.onSignOut(null);
       }else if(request.status === 401){
@@ -29,7 +28,7 @@ var CourierNavbar = React.createClass({
     return (
       <div> 
         <ul className="topnav">
-          <li><a href="#home">Home</a></li>
+          <li id="navbar-scranshare">ScranShare</li>
           <li><a onClick={this.handleClick} value="mapview" href="#Map View">Map View</a></li>
           <li><a onClick={this.handleClick} value="showalljobs" href="#Show All Jobs">Show All Jobs</a></li>
           <li><a onClick={this.signOut} href="#about">Sign Out</a></li>

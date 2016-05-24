@@ -26,7 +26,7 @@
 /*googlemap div:*/
 #map_canvas{
   min-width: 200px;
-  min-height: 300px;
+  min-height: 500px;
 
  /* position:absolute;
   left:0;
@@ -40,7 +40,7 @@
   #map_canvas {
     position: relative;
     width: 100vw;
-    height: 300px;
+    height: 500px;
     left: calc(-50vw + 50%);
   }
 }
@@ -95,6 +95,19 @@
     text-decoration: none;
     transition: 0.3s;
     font-size: 17px;
+  }
+  
+  #navbar-scranshare {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+    font-weight: bold;
+    /*color: rgb(0, 120, 231);*/
+    /*background-color: #fff;*/
   }
 
   /* Change background color of links on hover */
@@ -165,4 +178,7 @@
     background: rgb(66, 184, 221); /* this is a light blue */
   }
 
-
+  /*add margin to pure buttons*/
+  .pure-button {
+    margin: 2px;
+  }
