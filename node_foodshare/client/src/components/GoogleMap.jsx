@@ -80,8 +80,7 @@ var GoogleMap = React.createClass({
         // console.log("latlng: ", latLng)
         if(job.company.position.lat == latLng.lat){
           // console.log("reached here")
-          jobForViewing.push(job);
-          
+          jobForViewing.push(job);     
         }
 
         return jobForViewing;
