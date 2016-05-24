@@ -1,3 +1,4 @@
 *.app
 
 startServers.app/
+.DS_Store
