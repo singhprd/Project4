@@ -19,7 +19,7 @@ class CouriersController < ApplicationController
     id = params[:id].to_i
 
     if id != current_user.courier_id
-      render nothing: true, status: :bad_request
+      render nothing: true, status: :forbidden
     else
       courier = Courier.find_by(id: id)
       courier.update(courier_params)
@@ -31,7 +31,7 @@ class CouriersController < ApplicationController
     id = params[:id].to_i
 
     if id != current_user.courier_id
-      render nothing: true, status: :bad_request
+      render nothing: true, status: :forbidden
     else
       Courier.destroy(id)
       current_user.update(courier_id: nil)

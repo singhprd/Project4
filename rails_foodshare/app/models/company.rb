@@ -2,37 +2,14 @@ class Company < ActiveRecord::Base
   has_many :jobs
   has_many :users
 
-  def getId 
-    return id
-  end
-
-  def getName
-    return name
-  end
-
-  def getEmail
-    return email
-  end
-
-  def getPhone
-    return phone
-  end
-
-  def getFullAddress 
-    return "#{address1}, #{address2}, #{address3}, #{postcode}"
-  end
-
-  def getLocation
+  def position
     return {lat: lat, lng: lng}
   end
 
-  def to_hash_no_jobs
+  def to_hash
     return {
       name: name,
-      position: {
-        lat: lat,
-        lng: lng
-      },
+      position: position,
       contactDetails: {
         email: email,
         phone: phone,
