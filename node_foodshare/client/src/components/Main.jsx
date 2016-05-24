@@ -6,7 +6,6 @@ var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
 var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
 var CompanyView = require('./user_views/CompanyView.jsx')
 var CourierView = require('./user_views/CourierView.jsx')
-
 //sample job to pass through to joblist if required:
 // var sampleJSON = require('../sample.json');
 
@@ -82,15 +81,12 @@ var Main = React.createClass({
         if(this.state.currentUser.company_id !== null) {
           // USER HAS COMPANY
           mainDiv = <div>
-           <CompanyView/>
-            <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+           <CompanyView url={this.props.url} onSignOut={this.setUser}/>
             </div>
         } else if (this.state.currentUser.courier_id !== null) {
           // USER IS A COURIER
           mainDiv = <div>
-           <CourierView/>
-           <GoogleMap jobs={this.state.jobs}/>
-            <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+           <CourierView url={this.props.url} jobs={this.state.jobs} onSignOut={this.setUser}/>
             </div>
         } else {
           // USER IS NOT COURIER OR COMPANY
