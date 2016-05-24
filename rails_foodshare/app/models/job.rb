@@ -19,6 +19,7 @@ class Job < ActiveRecord::Base
 
   def to_hash_for_courier
     return {
+      id: id,
       item: item,
       quantity: quantity,
       instructions: instructions,
@@ -32,6 +33,7 @@ class Job < ActiveRecord::Base
 
   def to_hash_for_company
     return {
+      id: id,
       item: item,
       quantity: quantity,
       instructions: instructions,

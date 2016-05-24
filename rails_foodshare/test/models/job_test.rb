@@ -59,7 +59,8 @@ class JobTest < ActiveSupport::TestCase
 
   test "can return a hash with info for courier view" do
 
-    expected = { 
+    expected = {
+      id: 1,
       item: "Carrots",
       quantity: 4,
       instructions: "Open until 10:00pm. Available for pick-up 6pm-8pm",
@@ -91,7 +92,8 @@ class JobTest < ActiveSupport::TestCase
 
 test "can return a hash with info for company view" do
 
-    expected = { 
+    expected = {
+      id: 1,
       item: "Carrots",
       quantity: 4,
       instructions: "Open until 10:00pm. Available for pick-up 6pm-8pm",
