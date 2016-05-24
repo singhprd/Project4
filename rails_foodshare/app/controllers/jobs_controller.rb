@@ -7,11 +7,11 @@ class JobsController < ApplicationController
 
     if current_user.courier
       jobs = jobs.map do |job|
-        job.to_hash
+        job.to_hash_for_courier
       end
     elsif current_user.company
       jobs = jobs.map do |job|
-        job.to_hash_no_company
+        job.to_hash_for_company
       end
     end
 
@@ -20,7 +20,7 @@ class JobsController < ApplicationController
 
   # def create
   #   if !current_user.company
-  #     render :nothing => true, :status => :bad_request
+  #     render :nothing => true, :status => :forbidden
   #   else
   #     job = Job.create(job_params)
   #     job.update(company_id: current_user.company_id)

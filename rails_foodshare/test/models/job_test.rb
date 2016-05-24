@@ -57,7 +57,7 @@ class JobTest < ActiveSupport::TestCase
   #       }, jobs(:one).getCompanyDetails)
   # end
 
-  test "can build a job object which includes company information" do
+  test "can return a hash with info for courier view" do
 
     expected = { 
       item: "Carrots",
@@ -66,6 +66,7 @@ class JobTest < ActiveSupport::TestCase
       from_date: "2016-05-22",
       to_date: "2016-05-22",
       category:  "Supply",
+      courier_id: 1,
       company: {
         name: "Sodeberg",
         position: {
@@ -84,8 +85,30 @@ class JobTest < ActiveSupport::TestCase
     }
 
     assert_equal(
-     expected, jobs(:one).to_hash
+     expected, jobs(:one).to_hash_for_courier
     )
   end
+
+test "can return a hash with info for company view" do
+
+    expected = { 
+      item: "Carrots",
+      quantity: 4,
+      instructions: "Open until 10:00pm. Available for pick-up 6pm-8pm",
+      from_date: "2016-05-22",
+      to_date: "2016-05-22",
+      category:  "Supply",
+      courier: {
+        first_name: "Jenny",
+        last_name: "Bloggs",
+        phone: "07712343455"
+      }
+    }
+
+    assert_equal(
+     expected, jobs(:one).to_hash_for_company
+    )
+  end
+
 
 end
