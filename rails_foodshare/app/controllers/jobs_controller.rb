@@ -18,15 +18,15 @@ class JobsController < ApplicationController
     render json: jobs
   end
 
-  # def create
-  #   if !current_user.company
-  #     render :nothing => true, :status => :forbidden
-  #   else
-  #     job = Job.create(job_params)
-  #     job.update(company_id: current_user.company_id)
-  #     render json: job
-  #   end
-  # end
+  def create
+    if !current_user.company
+      render :nothing => true, :status => :forbidden
+    else
+      job = Job.create(job_params)
+      job.update(company_id: current_user.company_id)
+      render json: job
+    end
+  end
 
   # def update
   #   id = params[:id].to_i
@@ -53,10 +53,9 @@ class JobsController < ApplicationController
   # end
 
 
-  # private
-  # def job_params
-  #   params.require(:job).permit()
-  # end
-
+  private
+  def job_params
+    params.require(:job).permit(:item, :quantity, :instructions, :from_date, :to_date, :category)
+  end
 
 end
