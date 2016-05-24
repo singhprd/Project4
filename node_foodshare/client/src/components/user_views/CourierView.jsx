@@ -17,6 +17,7 @@ var CourierView = React.createClass({
   },
 
   handleCancelJob:function(job){
+    console.log("hello");
     var updateUrl = this.props.url + "jobs/" + job.id;  
     var object = {accepted: false};
     var request = new XMLHttpRequest();
@@ -30,7 +31,7 @@ var CourierView = React.createClass({
     return (
       <div> 
         <Navbar url={this.props.url} onSignOut={this.props.onSignOut}></Navbar>
-        <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob}/>
+        <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob} cancelJob={this.handleCancelJob}/>
       </div>
       )
   }

@@ -87,7 +87,7 @@ var GoogleMap = React.createClass({
     marker.addListener('click', function(){
       var jobForViewing = [];
       this.props.jobs.filter(function(job){
-        console.log("job: ", job)
+        
         // console.log("latlng: ", latLng)
         if(job.company.position.lat == latLng.lat){
           // console.log("reached here")
@@ -153,7 +153,7 @@ var GoogleMap = React.createClass({
        
         </div>
         <div>
-        { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
+        { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.cancelJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
         </div>
       
       </div>

@@ -22,8 +22,10 @@ var JobList = React.createClass({
     // return this.props.onTakeJob();
   },
 
-  cancelledJob: function(){
-    console.log("bailed out");
+  cancelledJob: function(e){
+    console.log("cancel job");
+    var job = this.findJob(this.props.jobs, e.target.value);
+    return this.props.onCancelJob(job);
   },
 
   setMarkerState: function(job){
@@ -47,7 +49,7 @@ var JobList = React.createClass({
       </li>
       <Address address = {job.company.contactDetails}/>  
       <button onClick = {this.takeJob} value = {index}>Take Job</button>
-      <button onClick = {this.cancelledJob}>Cancel</button>
+      <button onClick = {this.cancelledJob} value = {index}>Cancel</button>
     
       </div>)
     }.bind(this))
