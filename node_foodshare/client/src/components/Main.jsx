@@ -6,6 +6,7 @@ var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
 var ScranShareSignUp = require('./user_views/ScranShareSignUp.jsx')
 var CompanyView = require('./user_views/CompanyView.jsx')
 var CourierView = require('./user_views/CourierView.jsx')
+var Navbar = require('./Navbar')
 //sample job to pass through to joblist if required:
 // var sampleJSON = require('../sample.json');
 
@@ -72,6 +73,7 @@ var Main = React.createClass({
       if(!this.state.currentUser) {
         mainDiv = (
           <div>
+            <Navbar/>
             <h4> Please Sign In/Up </h4>
             <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
             <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>

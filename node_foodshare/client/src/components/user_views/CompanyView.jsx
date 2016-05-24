@@ -17,11 +17,11 @@ var CompanyView = React.createClass({
     switch(this.state.currentView) {
       case "foodForm":
         toDisplay = <JobForm url={this.props.url}/>
-        break;
+      break;
       case "donations":
         // toDisplay   = <DatePicker/>
         toDisplay = <ShowAllJobs jobs={this.props.jobs}>Donations</ShowAllJobs>
-        break;
+      break;
       default:
         toDisplay = <div />
     }

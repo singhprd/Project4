@@ -30,6 +30,7 @@ var GoogleMap = React.createClass({
     }));
   },
 
+
   //geolocation and click button to drop an arrow marker on your location:
   findMe:function(){
     //the map canvas div:
@@ -56,12 +57,12 @@ var GoogleMap = React.createClass({
 
   //add googlemap marker:
   addMarker:function(latLng, image){
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: this.map,
-        icon: image
-      });
-      return marker;      
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: this.map,
+      icon: image
+    });
+    return marker;      
   },
 
   setJobMarkerEmpty:function(){
@@ -114,8 +115,14 @@ var GoogleMap = React.createClass({
 
   //method to show JobList component:
   revealJobs:function(){
-      this.setState({ showJobList: true, showInfoButton:false});
+    this.setState({ showJobList: true, showInfoButton:false});
   },
+
+  //method to hide JobList component:
+  hideJobs:function(){
+    this.setState({showJobList: false});
+  },
+
 
   componentDidMount:function(){
     this.createMap();
@@ -128,22 +135,27 @@ var GoogleMap = React.createClass({
 
     return(
       <div className= "map">
-        <button onClick = {this.revealJobs}>See Jobs</button>
-        <button onClick = {this.findMe}>Find Me</button>
-        <div className = "pure-u-1-1" ref="map_canvas" id="map_canvas">
 
-        </div>
-        <div>
-        { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} onCanceljob = {this.props.cancelJob}jobs={this.props.jobs} /> : null }
-       
-        </div>
-        <div>
-        { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.cancelJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
-        </div>
+     
+        
+      <button className="pure-button button-secondary" onClick = {this.findMe}>Find Me</button>
+      <div className = "pure-u-1-1" ref="map_canvas" id="map_canvas">
+
+      </div>
+      <div>
+      { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} /> : null }
+
       
       </div>
+      <div>
+      { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.cancelJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
+      </div>
+      <button className="pure-button button-secondary" onClick = {this.revealJobs}>See Jobs</button>
+      <button className="pure-button button-secondary" onClick = {this.hideJobs}>Hide Jobs</button>
+
+      </div>
       )
-      }
+  }
   
 
 })
