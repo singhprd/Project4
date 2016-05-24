@@ -82,7 +82,8 @@ class JobTest < ActiveSupport::TestCase
           address3: "Edinburgh",
           postcode: "EH3 1RT"
         }
-      }
+      },
+      completed_date: nil
     }
 
     assert_equal(
@@ -104,7 +105,8 @@ class JobTest < ActiveSupport::TestCase
         first_name: "Jenny",
         last_name: "Bloggs",
         phone: "07712343455"
-      }
+      },
+      completed_date: nil
     }
 
     assert_equal(

@@ -60,17 +60,31 @@ class JobsController < ApplicationController
     if !accepted.nil? && !completed.nil?
       render text: 'Please include either an "accepted" or a "completed" field, but not both.', status: :bad_request
     elsif !accepted.nil?
-      if accepted == true && !job.courier_id
+      if    accepted == true &&
+            !job.courier_id
         job.update(courier_id: current_user.courier_id)
         render json: job.to_hash_for_courier
-      elsif accepted == false && job.courier_id == current_user.courier_id
+      elsif accepted == false &&
+            job.courier_id == current_user.courier_id
         job.update(courier_id: nil)
         render json: job.to_hash_for_courier
       else
         render nothing: true, status: :bad_request
       end
     elsif !completed.nil?
-      # if completed && job.courier_id == current_user.courier_id && job.
+      if    completed == true &&
+            job.courier_id == current_user.courier_id &&
+            job.completed_date.nil?
+        job.update(completed_date: DateTime.now)
+        render json: job.to_hash_for_courier
+      elsif completed == false &&
+            job.courier_id == current_user.courier_id &&
+            !job.completed_date.nil?
+        job.update(completed_date: nil)
+        render json: job.to_hash_for_courier
+      else
+        render nothing: true, status: :bad_request
+      end
     else
       render text: 'Please include either an "accepted" or a "completed" field.', status: :bad_request
     end
