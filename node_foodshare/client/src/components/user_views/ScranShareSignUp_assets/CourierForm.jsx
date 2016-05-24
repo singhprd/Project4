@@ -13,8 +13,9 @@ var CourierForm = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.onload = function(){
-      if(request.status === 201){
+      if(request.status === 200){
         console.log(request.responseText);
+        window.location.reload();
       }else {
         console.log("error posting courier data", request.status)
       }
