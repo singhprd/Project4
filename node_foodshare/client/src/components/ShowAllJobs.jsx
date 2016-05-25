@@ -7,7 +7,6 @@ var ShowAllJobs = React.createClass({
     return{job: null}
   },
 
-
   findJob: function(jobs, index){
     var job = jobs[index];
     return job;
