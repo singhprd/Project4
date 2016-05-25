@@ -6,10 +6,11 @@ var CompanyNavbar = require('../CompanyNavbar.jsx')
 var ShowAllJobs = require('../ShowAllJobs.jsx')
 var JobList = require('../JobList.jsx')
 var EditJobForm = require('./EditJobForm.jsx')
+var FormSuccessPage = require('../FormSuccessPage.jsx')
 // var DatePicker = require('../DatePicker.jsx')
 var CompanyView = React.createClass({
   getInitialState: function() {
-    return {currentView: "foodForm", selectedJobForEdit: {}}
+    return {currentView: "donations", selectedJobForEdit: {}}
   },
   changeView: function(view) {
     this.setState({currentView: view});
@@ -17,7 +18,6 @@ var CompanyView = React.createClass({
   handleDeleteJob:function(job){
     var updatedJobs = this.props.jobs;  
     updatedJobs = _.without(updatedJobs, job);
-    console.log(updatedJobs)
     this.props.forceUpdateState({jobs: updatedJobs});
 
     var updateUrl = this.props.url + "jobs/" + job.id;
@@ -29,17 +29,19 @@ var CompanyView = React.createClass({
     request.send(JSON.stringify(object))
   },
   handleChooseJobForEdit: function(job){
-    console.log(job)
     this.setState({selectedJobForEdit: job})
   },
   handleUpdateJob:function(job){
-    console.log("trying to update", job)
     var updateUrl = this.props.url + "jobs/" + job.id;
-
     var request = new XMLHttpRequest();
     request.open("PUT", updateUrl, true);
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
+    request.onload = function(){
+      if(request.status === 200) {
+        this.setState({currentView: "updateSuccess"});
+      }
+    }.bind(this);
     request.send(JSON.stringify(job))
   },
   render: function() {
@@ -53,6 +55,9 @@ var CompanyView = React.createClass({
       break;
       case "editJobView":
         toDisplay = <EditJobForm job={this.state.selectedJobForEdit} onUpdate={this.handleUpdateJob}></EditJobForm>
+      break;
+      case "updateSuccess":
+        toDisplay = <FormSuccessPage changeView={this.changeView}/>
       break;
       default:
         toDisplay = <div />

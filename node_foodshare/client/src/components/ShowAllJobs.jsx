@@ -35,8 +35,8 @@ var ShowAllJobs = React.createClass({
         <li>
         {job.category} {job.item} {job.quantity} {job.instructions} {job.from_date} {job.to_date} 
         </li>
-        <button onClick={this.handleEditClick} value={index}>UPDATE</button>
-        <button onClick={this.handleDeleteClick} value={index}>DELETE</button>
+        <button className="pure-button button-small" onClick={this.handleEditClick} value={index}>UPDATE</button>
+        <button className="pure-button button-small" onClick={this.handleDeleteClick} value={index}>DELETE</button>
 
     </div>  
     )

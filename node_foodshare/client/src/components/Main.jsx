@@ -62,7 +62,7 @@ var Main = React.createClass({
     request.onload = function(){
       if(request.status === 200){
         var receivedUser = JSON.parse(request.responseText);
-        this.setUser(receivedUser)
+        this.setUser(receivedUser);
       }else if(request.status === 401){
         this.setState({currentUser:false});
       }
