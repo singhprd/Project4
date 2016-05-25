@@ -4,17 +4,16 @@ var JobForm = require('./JobForm.jsx');
 var CompanyNavbar = require('../CompanyNavbar.jsx')
 var ShowAllJobs = require('../ShowAllJobs.jsx')
 var JobList = require('../JobList.jsx')
+var EditJobForm = require('./EditJobForm.jsx')
 // var DatePicker = require('../DatePicker.jsx')
-
 var CompanyView = React.createClass({
   getInitialState: function() {
-    return {currentView: "foodForm"}
+    return {currentView: "foodForm", selectedJobForEdit: {}}
   },
-  changeView: function(view) {
+  changeView: function(view, info) {
     this.setState({currentView: view});
+    
   },
-
-
   handleDeleteJob:function(job){
     var updateUrl = this.props.url + "jobs/" + job.id;
     var object= ""
@@ -24,12 +23,22 @@ var CompanyView = React.createClass({
     request.withCredentials = true;
     request.send(JSON.stringify(object))
   },
+  handleChooseJobForEdit: function(job){
+    console.log(job)
+    this.setState({selectedJobForEdit: job})
+  },
+  handleUpdateJob:function(job){
+    console.log("trying to update", job)
 
 
+    // var updateUrl = this.props.url + "jobs/" + job.id;
 
-
-
-
+    // var request = new XMLHttpRequest();
+    // requiest.open("PUT", updateUrl, true);
+    // requst.setRequestHeader("Content-Type", "application/json");
+    // request.withCredentials = true;
+    // request.send(JSON.stringify(job))
+  },
   render: function() {
     var toDisplay;
     switch(this.state.currentView) {
@@ -37,7 +46,10 @@ var CompanyView = React.createClass({
         toDisplay = <JobForm url={this.props.url}/>
       break;
       case "donations":
-        toDisplay = <ShowAllJobs jobs={this.props.jobs} onDeleteJob={this.handleDeleteJob}>Donations</ShowAllJobs>
+        toDisplay = <ShowAllJobs jobs={this.props.jobs} onDeleteJob={this.handleDeleteJob} changeView={this.changeView} onChooseJobForEdit={this.handleChooseJobForEdit}>Donations</ShowAllJobs>
+      break;
+      case "editJobView":
+        toDisplay = <EditJobForm job={this.state.selectedJobForEdit} onUpdate={this.handleUpdateJob}></EditJobForm>
       break;
       default:
         toDisplay = <div />
@@ -47,6 +59,7 @@ var CompanyView = React.createClass({
       <div> 
         <CompanyNavbar changeView={this.changeView} url={this.props.url} onSignOut={this.props.onSignOut}></CompanyNavbar>
         {toDisplay}
+
       </div>
       )
   }

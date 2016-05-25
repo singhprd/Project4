@@ -29,9 +29,9 @@ var CompanyNavbar = React.createClass({
       <div> 
       <ul className="topnav">
       <li id="navbar-scranshare">ScranShare</li>
-      <li><a onClick={this.handleClick} value="foodForm" href="#Food Form">Food Form</a></li>
-      <li><a onClick={this.handleClick} value="donations" href="#Donations">Donations</a></li>
-      <li><a onClick={this.signOut} href="#about">Sign Out</a></li>
+      <li><a onClick={this.handleClick} value="foodForm">Food Form</a></li>
+      <li><a onClick={this.handleClick} value="donations">Donations</a></li>
+      <li><a onClick={this.signOut}>Sign Out</a></li>
 
       <li className="icon">
       <a onClick={this.toggleClassNames}>&#9776;</a>
