@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Navbar = React.createClass({
+var CourierNavbar = React.createClass({
   signOut:function(e){
     e.preventDefault();
     var request = new XMLHttpRequest();
@@ -15,21 +15,32 @@ var Navbar = React.createClass({
     }.bind(this)
     request.send(null);
   },
-  toggleClassNames: function(e) {
-    e.preventDefault();
+  toggleClassNames: function() {
     /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
     document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+  },
+  handleClick: function(e) {
+    e.preventDefault();
+    this.props.changeView(e.target.value);
+    this.toggleClassNames();
   },
   render: function() {
     return (
       <div> 
-      <ul className="topnav">
-        <li id="navbar-scranshare">ScranShare</li>
-      </ul>
+        <ul className="topnav">
+          <li id="navbar-scranshare">ScranShare</li>
+          <li><a onClick={this.handleClick} value="mapview" href="#Map View">Map View</a></li>
+          <li><a onClick={this.handleClick} value="showalljobs" href="#Show All Jobs">Show All Jobs</a></li>
+          <li><a onClick={this.signOut} href="#about">Sign Out</a></li>
+
+          <li className="icon">
+          <a onClick={this.toggleClassNames}>&#9776;</a>
+          </li>
+        </ul>
       </div>
       )
   }
 });
 
-module.exports = Navbar;
+module.exports = CourierNavbar;
 

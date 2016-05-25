@@ -17,26 +17,36 @@ class Job < ActiveRecord::Base
   end
 
 
-  def to_hash
+  def to_hash_for_courier
     return {
+      id: id,
       item: item,
       quantity: quantity,
       instructions: instructions,
       from_date: from_date.iso8601,
       to_date: to_date.iso8601,
       category: category,
-      company: company.to_hash_no_jobs
+      courier_id: courier_id,
+      company: company ? company.to_hash : nil,
+      completed_date: completed_date
     }
   end
 
-  def to_hash_no_company
+  def to_hash_for_company
     return {
+      id: id,
       item: item,
       quantity: quantity,
       instructions: instructions,
       from_date: from_date.iso8601,
       to_date: to_date.iso8601,
-      category: category
+      category: category,
+      courier: courier ? courier.to_hash : nil,
+      completed_date: completed_date
     }
   end
+
+  # def set_courier(courier)
+
+  # end
 end

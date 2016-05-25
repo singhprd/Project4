@@ -5,19 +5,26 @@ class CourierTest < ActiveSupport::TestCase
   #   assert true
   # end
   test "has first name" do 
-    assert_equal("Jenny", couriers(:one).getFirstName)
+    assert_equal("Jenny", couriers(:one).first_name)
   end
 
   test "has last name" do 
-    assert_equal("Bloggs", couriers(:one).getLastName)
-  end
-
-  test "can get full name" do 
-    assert_equal("Jenny Bloggs", couriers(:one).getFullName)
+    assert_equal("Bloggs", couriers(:one).last_name)
   end
 
   test "has a phone number" do 
-    assert_equal("07712343455", couriers(:one).getPhoneNumber)
+    assert_equal("07712343455", couriers(:one).phone)
+  end
+
+  test "can return a hash with info" do
+    assert_equal(
+      {
+        first_name: "Jenny",
+        last_name: "Bloggs",
+        phone: "07712343455"
+      },
+      couriers(:one).to_hash
+    )
   end
 
 end

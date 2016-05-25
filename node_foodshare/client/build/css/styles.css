@@ -33,6 +33,7 @@
   margin-bottom: 50px;
   line-height: 1.6em;
   margin-top: 65px;
+  /*border: 1px solid;*/
 }
 
 
@@ -40,7 +41,8 @@
 /*googlemap div:*/
 #map_canvas{
   min-width: 200px;
-  min-height: 300px;
+  min-height: 500px;
+
  /* position:absolute;
   left:0;
   right:0;*/
@@ -53,11 +55,21 @@
   #map_canvas {
     position: relative;
     width: 100vw;
-    height: 300px;
+    height: 500px;
     left: calc(-50vw + 50%);
   }
 }
 
+#my-info-window{
+  min-height: 200px;
+  min-width: 200px;
+  max-width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(224,247,250,0.8);
+
+}
 
 /*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
 
@@ -98,6 +110,19 @@
     text-decoration: none;
     transition: 0.3s;
     font-size: 17px;
+  }
+  
+  #navbar-scranshare {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+    font-weight: bold;
+    /*color: rgb(0, 120, 231);*/
+    /*background-color: #fff;*/
   }
 
   /* Change background color of links on hover */
@@ -142,3 +167,33 @@
     }
   }
 
+  /*Custom buttons*/
+  .button-success,
+  .button-error,
+  .button-warning,
+  .button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+  }
+
+  .button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+  }
+
+  .button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+  }
+
+  .button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
+  }
+
+  /*add margin to pure buttons*/
+  .pure-button {
+    margin: 2px;
+  }
