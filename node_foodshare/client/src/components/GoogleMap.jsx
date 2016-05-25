@@ -72,13 +72,15 @@ setJobMarkerEmpty:function(){
 //add google info window:
 addInfoWindow: function( latLng, image){
   var marker = this.addMarker(latLng, image);
-  marker.addListener('click', function(){
+  marker.addListener('click', function(e){
+    console.log(event.screenX);
+    console.log(event.screenY);
     var jobForViewing = [];
     this.props.jobs.filter(function(job){
     // console.log("latlng: ", latLng)
     if(job.company.position.lat == latLng.lat){
     // console.log("reached here")
-    jobForViewing.push(job);     
+    jobForViewing.push(job);
   }
   return jobForViewing;
 }.bind(this))
