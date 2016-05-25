@@ -37,19 +37,41 @@ var JobList = React.createClass({
     this.props.onCompleteJob(job);
   },
 
+  editJob: function(e){
+    console.log("trying to edit job");
+    var job = this.findJob(this.props.jobs, e.target.value);
+    this.props.onEditJob(job);
+  },
+
+  deleteJob: function(e){
+    console.log("trying to delete job");
+    var job = this.findJob(this.props.jobs, e.target.value);
+    this.props.onDeleteJob(job);
+  },
+
   setMarkerState: function(job){
     this.setState({job: job})
   },  
 
   jobButtons: function(job, index){
+    // courier buttons
     var takeJobButton = <button onClick = {this.takeJob} value = {index}>Take Job</button>
     var cancelJobButton = <button onClick = {this.cancelJob} value = {index}>Cancel My Job</button>
     var completeJobButton = <button onClick = {this.completeJob} value = {index}> Complete Job </button>
+    // company buttons
+    var editJobButton = <button onClick = {this.editJob} value = {index}>Edit Job</button>
+    var deleteJobButton = <button onClick = {this.deleteJob} value = {index}>Delete Job</button>
 
     // edit
     // delete
 
-    if (job.courier_id === null) {
+    if (this.props.company) {
+      return (
+        <div>
+          {editJobButton}
+          {deleteJobButton}
+        </div>)
+    } else if (job.courier_id === null) {
       return (
         <div>
           {takeJobButton}
