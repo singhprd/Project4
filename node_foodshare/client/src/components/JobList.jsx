@@ -115,11 +115,8 @@ var JobList = React.createClass({
     }.bind(this))
 
     return(
-      <div>
-        <ul>
+      <div>  
         {jobs}
-        </ul>
-
       </div>
       )
   }
