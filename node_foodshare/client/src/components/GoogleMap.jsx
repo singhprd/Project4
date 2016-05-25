@@ -93,10 +93,10 @@ addMarkersForJobs:function(){
   var companyLng = job.company.position.lng; 
   var image;
   if (job.courier_id === null){
-    image = "images/green_marker.png";
+    image = "images/light-green-marker.png";
   }
   if (job.courier_id !== null){
-    image = null;
+    image = "images/orange-marker.png";
   }
   // this.addMarker({lat: companyLat, lng: companyLng}, image);
 

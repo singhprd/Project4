@@ -12,7 +12,7 @@ var Address = React.createClass({
     // });
 
     return(
-      <div>
+      <div className = "address-box">
         <ul>
         <h4 className="address-header">{this.props.company.name}</h4>
         <p className="address-details">{this.props.company.contactDetails.address1}, {this.props.company.contactDetails.address2}, {this.props.company.contactDetails.address3} </p>
