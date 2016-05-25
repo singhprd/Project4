@@ -42,9 +42,9 @@ var JobList = React.createClass({
   },  
 
   jobButtons: function(job, index){
-    var takeJobButton = <button onClick = {this.takeJob} value = {index}>Take Job</button>
-    var cancelJobButton = <button onClick = {this.cancelJob} value = {index}>Cancel My Job</button>
-    var completeJobButton = <button onClick = {this.completeJob} value = {index}> Complete Job </button>
+    var takeJobButton = <button className= "pure-button button-small" onClick = {this.takeJob} value = {index}>Take Job</button>
+    var cancelJobButton = <button className= "pure-button button-small" onClick = {this.cancelJob} value = {index}>Cancel My Job</button>
+    var completeJobButton = <button className= "pure-button button-small"onClick = {this.completeJob} value = {index}> Complete Job </button>
 
     // edit
     // delete
@@ -67,15 +67,15 @@ var JobList = React.createClass({
 
   jobStyle: function(job){
     if(job.courier_id === null){
-        return "job-available";
+        return "job job-available";
       }  
-        return "job-taken";
+        return "job job-taken";
     
   },
 
   addressComponent: function(job){
     if(this.props.address){
-      return <Address address = {job.company.contactDetails}/>
+      return <Address company = {job.company}/>
     } else {
       return null;
     }
@@ -91,17 +91,17 @@ var JobList = React.createClass({
       
       var method;
       if (job.category === "Supply"){
-        method = " collected from ";
+        method = " Collect: ";
       }
       if (job.category === "Demand"){
-        method = " delivered to ";
+        method = " Deliver:";
       }
       
       return (
-      <div key={index} jobIndex={index}>
-        <li className={this.jobStyle(job)}>
-        {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
-        </li>
+      <div className={this.jobStyle(job)} key={index} jobIndex={index}>
+        <div>
+        <strong>{method}</strong> {job. quantity} x {job.item}. Available from: {job.from_date} to: {job.to_date} <br/>Instructions: {job.instructions}
+        </div>
         {this.addressComponent(job)}
         {this.jobButtons(job, index)}
       </div>)
@@ -109,7 +109,6 @@ var JobList = React.createClass({
 
     return(
       <div>
-        <h4> My job list</h4>
         <ul>
         {jobs}
         </ul>

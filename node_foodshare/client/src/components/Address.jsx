@@ -16,10 +16,11 @@ var Address = React.createClass({
     return(
       <div>
         <ul>
-        <li>{this.props.address.address1}, {this.props.address.address2}, {this.props.address.address3} </li>
-        <li>{this.props.address.postcode}</li>
-        <li>{this.props.address.phone}</li>
-        <li>{this.props.address.email}</li>
+        <h4 className="address-header">{this.props.company.name}</h4>
+        <p className="address-details">{this.props.company.contactDetails.address1}, {this.props.company.contactDetails.address2}, {this.props.company.contactDetails.address3} </p>
+        <p className="address-details">{this.props.company.contactDetails.postcode}</p>
+        <li>{this.props.company.contactDetails.phone}</li>
+        <li>{this.props.company.contactDetails.email}</li>
         </ul>
 
 

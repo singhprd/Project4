@@ -46,7 +46,7 @@ render:function(){
 
   return (
           <div id = "my-info-window">
-          <Address address={this.captureJobCompany(this.props.job).contactDetails}/>
+          <Address company={this.captureJobCompany(this.props.job)}/>
           <JobList onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} company= {this.captureJobCompany(this.props.job)} jobs = {this.props.job}/>
         
           <button onClick = {this.handleCloseClick}>Close</button>
