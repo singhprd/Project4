@@ -11,10 +11,23 @@ var SupplyItemForm = React.createClass({
   mixins: [LinkedStateMixin],
 
   getInitialState: function() {
-    return {item:'',instructions:'',quantity:'', from_date: '', to_date: '', error:'', submited:false}
+    return {item:'',instructions:'',quantity:'', from_date: this.getTodaysDate(), to_date: this.getTodaysDate(), error:'', submited:false, category:"Supply"}
+  },
+  getTodaysDate: function() {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth() + 1;
+    if(month < 10) {
+      month = `0${month}`
+    }
+    var date = d.getDate();
+    if(date < 10) {
+      date = `0${date}`
+    }
+    return `${year}-${month}-${date}`
   },
   resetForm: function() {
-    this.setState({item:'',instructions:'',quantity:'', from_date: '', to_date: '', error:'', submited:false});
+    this.setState({item:'',instructions:'',quantity:'', from_date: this.getTodaysDate(), to_date: this.getTodaysDate(), error:'', submited:false});
   },
   handleSubmit: function(e){
     e.preventDefault();
@@ -43,20 +56,31 @@ var SupplyItemForm = React.createClass({
       quantity:this.state.quantity,
       item:this.state.item,
       from_date: this.state.from_date,
-      to_date: this.state.to_date
+      to_date: this.state.to_date,
+      category: this.state.category
     }
+    console.log(data)
     request.send(JSON.stringify(data));
   },
   render: function() {
-      var toReturn;
-      var SubmittedView = (<div>
-        <p>Awesome, thats submitted!</p>
-        <button onClick={this.resetForm} className="pure-button button-success"> <i className="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
-        </div>)
-      var FormView = (
+    var toReturn;
+    var SubmittedView = (<div>
+      <p>Awesome, thats submitted!</p>
+      <button onClick={this.resetForm} className="pure-button button-success"> <i className="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+      </div>)
+    var FormView = (
       <div>
       <form className="pure-form pure-form-aligned">
       <fieldset>
+
+      <div className="pure-control-group">
+      <label for="state">Type</label>
+      <select valueLink={this.linkState('category')} id="state">
+      <option value="Supply">Supply</option>
+      <option value="Demand">Demand</option>
+      </select>
+      </div>
+
       <div className="pure-control-group">
       <label for="item">item</label>
       <input  valueLink={this.linkState('item')} id="item" type="text" placeholder="item"/>
@@ -90,13 +114,13 @@ var SupplyItemForm = React.createClass({
       </div>
       )
 
-      if(this.state.submited) {
-        toReturn = SubmittedView;
-      } else {
-        toReturn = FormView;
-      }
+    if(this.state.submited) {
+      toReturn = SubmittedView;
+    } else {
+      toReturn = FormView;
+    }
 
-      return <div>{toReturn}</div>
+    return <div>{toReturn}</div>
   }
 });
 

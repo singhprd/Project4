@@ -56,6 +56,14 @@
 
 }
 
+.job-available{
+  background-color: rgba(50,147,250,0.8);
+}
+
+.job-taken{
+  background-color: rgba(224,40,150,0.8);
+}
+
 /*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
 
 /*.map{

@@ -24,16 +24,54 @@ var JobList = React.createClass({
     // return this.props.onTakeJob();
   },
 
-  cancelledJob: function(e){
-    console.log("cancel job");
+  cancelJob: function(e){
+    // console.log("cancel job");
     var job = this.findJob(this.props.jobs, e.target.value);
     return this.props.onCancelJob(job);
 
   },
 
+  completeJob: function(e){
+    console.log("trying to complete job");
+    var job = this.findJob(this.props.jobs, e.target.value);
+    this.props.onCompleteJob(job);
+  },
+
   setMarkerState: function(job){
     this.setState({job: job})
   },  
+
+  jobButtons: function(job, index){
+    var takeJobButton = <button onClick = {this.takeJob} value = {index}>Take Job</button>
+    var cancelJobButton = <button onClick = {this.cancelJob} value = {index}>Cancel My Job</button>
+    var completeJobButton = <button onClick = {this.completeJob} value = {index}> Complete Job </button>
+
+    // edit
+    // delete
+
+    if (job.courier_id === null) {
+      return (
+        <div>
+          {takeJobButton}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          {cancelJobButton}
+          {completeJobButton}
+        </div>
+      )
+    }
+  },
+
+  jobStyle: function(job){
+    if(job.courier_id === null){
+        return "job-available";
+      }  
+        return "job-taken";
+    
+  },
 
   render:function(){
     var jobs = this.props.jobs.map(function(job, index){
@@ -47,13 +85,11 @@ var JobList = React.createClass({
       }
       
       return (<div key={index} jobIndex={index}>
-      <li>
+      <li className={this.jobStyle(job)}>
       {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
       </li>
       <Address address = {job.company.contactDetails}/>  
-      <button onClick = {this.takeJob} value = {index}>Take Job</button>
-      <button onClick = {this.cancelledJob} value = {index}>Cancel My Job</button>
-    
+      {this.jobButtons(job, index)}
       </div>)
     }.bind(this))
 
