@@ -42,7 +42,6 @@ var Main = React.createClass({
       if(request.status === 200){
         var jobs = JSON.parse(request.responseText);
         if ( !_.isEqual(jobs, this.state.jobs) ) {
-          console.log("render the jobs dude", jobs);
           this.setState({jobs: jobs});
         }
         setTimeout(this.fetchJobs, 1000);
