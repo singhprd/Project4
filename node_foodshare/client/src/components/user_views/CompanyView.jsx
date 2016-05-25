@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var React = require('react');
 var SignOut = require('../authentication/SignOut.jsx');
 var JobForm = require('./JobForm.jsx');
@@ -10,18 +11,25 @@ var CompanyView = React.createClass({
   getInitialState: function() {
     return {currentView: "foodForm", selectedJobForEdit: {}}
   },
-  changeView: function(view, info) {
+  changeView: function(view) {
     this.setState({currentView: view});
     
   },
   handleDeleteJob:function(job){
+    var updatedJobs = this.props.jobs;  
+    updatedJobs = _.without(updatedJobs, job);
+
+    this.props.forceUpdateState({jobs: updatedJobs});
+
     var updateUrl = this.props.url + "jobs/" + job.id;
     var object= ""
     var request = new XMLHttpRequest();
     request.open("DELETE", updateUrl, true );
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
-    request.send(JSON.stringify(object))
+    // request.send(JSON.stringify(object))
+
+    this.props.fetchJobs();
   },
   handleChooseJobForEdit: function(job){
     console.log(job)
@@ -44,7 +52,7 @@ var CompanyView = React.createClass({
         toDisplay = <JobForm url={this.props.url}/>
       break;
       case "donations":
-        toDisplay = <ShowAllJobs jobs={this.props.jobs} onDeleteJob={this.handleDeleteJob} changeView={this.changeView} onChooseJobForEdit={this.handleChooseJobForEdit}>Donations</ShowAllJobs>
+        toDisplay = <ShowAllJobs jobs={this.props.jobs} handleDeleteJob={this.handleDeleteJob} changeView={this.changeView} onChooseJobForEdit={this.handleChooseJobForEdit}>Donations</ShowAllJobs>
       break;
       case "editJobView":
         toDisplay = <EditJobForm job={this.state.selectedJobForEdit} onUpdate={this.handleUpdateJob}></EditJobForm>

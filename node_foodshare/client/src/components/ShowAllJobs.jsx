@@ -19,18 +19,14 @@ var ShowAllJobs = React.createClass({
   handleEditClick: function(e) {
     this.props.changeView("editJobView")
     var job = this.findJob(this.props.jobs, e.target.value)
-    this.props.onChooseJobForEdit(job)
+    this.props.onChooseJobForEdit(job);
   },
 
-  deleteButton: function(job, index){
-    var deleteJobButton = <button onClick ={this.deleteJob} value ={index}> DELETE</button>
-    return(
-    <div>
-    {deleteJobButton}
-    </div>
-    )
+  handleDeleteClick: function(e){
+    e.preventDefault();
+    var job = this.findJob(this.props.jobs, e.target.value);
+    this.props.handleDeleteJob(job);
   },
-
 
   render: function(){
     var jobs = this.props.jobs.map(function(job, index){
@@ -40,6 +36,7 @@ var ShowAllJobs = React.createClass({
         {job.category} {job.item} {job.quantity} {job.instructions} {job.from_date} {job.to_date} 
         </li>
         <button onClick={this.handleEditClick} value={index}>UPDATE</button>
+        <button onClick={this.handleDeleteClick} value={index}>DELETE</button>
 
     </div>  
     )
