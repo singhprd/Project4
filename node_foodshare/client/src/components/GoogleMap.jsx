@@ -137,6 +137,7 @@ var GoogleMap = React.createClass({
 
     return(
       <div className= "map">
+
         <div className = "pure-u-1-1" ref="map_canvas" id="map_canvas">
      </div>
 
@@ -154,6 +155,7 @@ var GoogleMap = React.createClass({
       </div>
      
       )
+
   }
   
 
