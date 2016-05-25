@@ -34,8 +34,13 @@ captureJobCompany: function(jobs){
   }
 },
 
-
-
+selectJobs: function(){
+  var jobs = [];
+  for (var index of this.props.jobIndices) {
+    jobs.push(this.props.jobs[index]);
+  }
+  return jobs;
+},
 
   // {this.displayJobDetails(this.props.job)}
 
@@ -44,12 +49,15 @@ render:function(){
   //     console.log(4+2);
   // };
 
+  var selectedJobs = this.selectJobs();
+
   return (
           <div id = "my-info-window">
-          <Address company={this.captureJobCompany(this.props.job)}/>
-          <JobList onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} company= {this.captureJobCompany(this.props.job)} jobs = {this.props.job}/>
-        
           <button onClick = {this.handleCloseClick}>Close</button>
+          <Address company={this.captureJobCompany(selectedJobs)}/>
+          <JobList onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} company= {this.captureJobCompany(selectedJobs)} jobs = {selectedJobs}/>
+        
+          
           </div>  
   )
 }

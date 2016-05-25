@@ -73,16 +73,16 @@ setJobMarkerEmpty:function(){
 addInfoWindow: function( latLng, image){
   var marker = this.addMarker(latLng, image);
   marker.addListener('click', function(){
-    var jobForViewing = [];
-    this.props.jobs.filter(function(job){
-    // console.log("latlng: ", latLng)
-    if(job.company.position.lat == latLng.lat){
-    // console.log("reached here")
-    jobForViewing.push(job);     
-  }
-  return jobForViewing;
-}.bind(this))
-    this.setState({ showInfoButton: true, showJobList: false, jobMarker: jobForViewing});
+    var jobIndices = [];
+    this.props.jobs.forEach(function(job, index){
+      // console.log("latlng: ", latLng)
+      if(job.company.position.lat == latLng.lat){
+        // console.log("reached here")
+        jobIndices.push(index);
+      }
+      // return jobIndices;
+    }.bind(this))
+    this.setState({ showInfoButton: true, showJobList: false, jobMarker: jobIndices});
   }.bind(this));
 },
 addMarkersForJobs:function(){
@@ -127,10 +127,10 @@ render:function(){
     <div className = "pure-u-1-1" ref="map_canvas" id="map_canvas">
     </div>
     <div>
-      { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob} address="true"/> : null }
+      { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob} onCancelJob={this.props.onCancelJob} address="true"/> : null }
     </div>
     <div>
-      { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
+      { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} jobIndices={this.state.jobMarker} jobs={this.props.jobs} onCloseClick={this.setJobMarkerEmpty} /> : null }
     </div>
     <button className="pure-button button-secondary" onClick = {this.revealJobs}>See Jobs</button>
     <button className="pure-button button-secondary" onClick = {this.hideJobs}>Hide Jobs</button>

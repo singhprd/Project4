@@ -43,7 +43,7 @@ var JobList = React.createClass({
 
   jobButtons: function(job, index){
     var takeJobButton = <button className= "pure-button button-small" onClick = {this.takeJob} value = {index}>Take Job</button>
-    var cancelJobButton = <button className= "pure-button button-small" onClick = {this.cancelJob} value = {index}>Cancel My Job</button>
+    var cancelJobButton = <button className= "pure-button button-small" onClick = {this.cancelJob} value = {index}>Release Job</button>
     var completeJobButton = <button className= "pure-button button-small"onClick = {this.completeJob} value = {index}> Complete Job </button>
 
     // edit
