@@ -1,5 +1,6 @@
 var React = require('react');
 var JobList = require('./JobList');
+var Address = require('./Address');
 
 var InfoButton = React.createClass({
 
@@ -29,7 +30,8 @@ render:function(){
 
   return (
           <div id = "my-info-window">
-          <JobList onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} jobs = {this.props.job}/>
+          <JobList onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} jobs = {this.props.job}/>
+        
           <button onClick = {this.handleCloseClick}>Close</button>
           </div>  
   )
