@@ -82,7 +82,7 @@ addInfoWindow: function( latLng, image){
       }
       // return jobIndices;
     }.bind(this))
-    this.setState({ showInfoButton: true, showJobList: false, jobMarker: jobIndices});
+    this.setState({ showInfoButton: true, showJobList: false, jobMarker: latLng});
   }.bind(this));
 },
 addMarkersForJobs:function(){
