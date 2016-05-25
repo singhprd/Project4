@@ -8,12 +8,14 @@
   position: absolute;
   z-index: -1;
   opacity: 0.7;
-  background: url(images/foodbanner image.jpg) no-repeat center center fixed; 
+  background: url(images/foodbanner image.jpg) repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   margin-bottom: 0;
+  -webkit-filter: grayscale(50%);
+  filter: grayscale(50%);
 }
 
 
@@ -91,11 +93,11 @@
 }
 
 .job-available{
-  background-color: rgba(255,152,0,0.4);
+  background-color: rgba(255,152,0,0.7);
 }
 
 .job-taken{
-  background-color: rgba(76,175,80,0.4);
+  background-color: rgba(76,175,80,0.7);
 }
 
 /*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
@@ -227,7 +229,7 @@
   .button-small {
     font-size: 85;
     border-radius: 4px;
-    background: rgb(28, 184, 65);
+    background: rgb(66, 184, 221);
     padding: 3px;
     color: white;
   }
