@@ -20,6 +20,8 @@ Day Two
 
 Day Three
 
+-Erik created a modle relationship diagram using draw.io which is the basis of what we will be all working form. 
+
 -Alison and Claire took on the challenge of CORS and in an a hour (*yes we are that good*)are victorious. The next step is to have rails connected to a database.
 
 -Things we had to install
@@ -31,4 +33,32 @@ react-addons-linked-state-mixin
 - Created new welcome page views.
 
 We now need to create models for companies and courrier so that users can have a foreign key linking them to a company or courrier.
+
+Day Four
+SUNDAY
+Research day
+Alisdair worked on and developed the models and has tested it all as well :D
+
+Day Five
+
+AIM: SPLITTING UP INTO TWO TEAMS, DATABASE TEAM AND GOOGLE MAP TEAM
+
+Catchup-
+Held our scrum and caught up on what people had focused on during the weekend 
+Claire drawed out a wire plan for the courier story and Monday to do List
+Peter held a PURE CSS lesson and taught us what he learnt about pure and how he is used it within the project. 
+Alison held a GOOGLE MAP lesson
+The jobs is coming from the JSON from RAILS 
+The coordinates are hard coded but now the goolge map is loading these coordinates.
+Claire and Peter made the forms for Company and Courier so now they can sign in, fill in information and this persists to the database. 
+
+
+Day Six
+
+Peter showed his CSS and created a nav bar
+
+
+
+
+
 

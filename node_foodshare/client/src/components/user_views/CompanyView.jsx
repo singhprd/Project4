@@ -3,6 +3,7 @@ var SignOut = require('../authentication/SignOut.jsx');
 var JobForm = require('./JobForm.jsx');
 var CompanyNavbar = require('../CompanyNavbar.jsx')
 var ShowAllJobs = require('../ShowAllJobs.jsx')
+var JobList = require('../JobList.jsx')
 // var DatePicker = require('../DatePicker.jsx')
 
 var CompanyView = React.createClass({
@@ -12,6 +13,23 @@ var CompanyView = React.createClass({
   changeView: function(view) {
     this.setState({currentView: view});
   },
+
+
+  handleDeleteJob:function(job){
+    var updateUrl = this.props.url + "jobs/" + job.id;
+    var object= ""
+    var request = new XMLHttpRequest();
+    request.open("DELETE", updateUrl, true );
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.send(JSON.stringify(object))
+  },
+
+
+
+
+
+
   render: function() {
     var toDisplay;
     switch(this.state.currentView) {
@@ -19,8 +37,7 @@ var CompanyView = React.createClass({
         toDisplay = <JobForm url={this.props.url}/>
       break;
       case "donations":
-        // toDisplay   = <DatePicker/>
-        toDisplay = <ShowAllJobs jobs={this.props.jobs}>Donations</ShowAllJobs>
+        toDisplay = <ShowAllJobs jobs={this.props.jobs} onDeleteJob={this.handleDeleteJob}>Donations</ShowAllJobs>
       break;
       default:
         toDisplay = <div />

@@ -5,7 +5,7 @@ var InfoButton = require('./InfoButton');
 
 
 var GoogleMap = React.createClass({
-map: null,
+  map: null,
 // infowindow: null,
 //initial state of JobList component is not visible:
 getInitialState: function(){
@@ -74,14 +74,14 @@ addInfoWindow: function( latLng, image){
   var marker = this.addMarker(latLng, image);
   marker.addListener('click', function(){
     var jobForViewing = [];
-  this.props.jobs.filter(function(job){
+    this.props.jobs.filter(function(job){
     // console.log("latlng: ", latLng)
     if(job.company.position.lat == latLng.lat){
     // console.log("reached here")
-      jobForViewing.push(job);     
-    }
-    return jobForViewing;
-  }.bind(this))
+    jobForViewing.push(job);     
+  }
+  return jobForViewing;
+}.bind(this))
     this.setState({ showInfoButton: true, showJobList: false, jobMarker: jobForViewing});
   }.bind(this));
 },
@@ -102,7 +102,7 @@ addMarkersForJobs:function(){
   // this.addMarker({lat: companyLat, lng: companyLng}, image);
 
   return this.addInfoWindow({lat: companyLat, lng: companyLng}, image);
-  }.bind(this));
+}.bind(this));
 },
 //method to show JobList component:
 revealJobs:function(){
@@ -119,31 +119,26 @@ componentDidMount:function(){
   this.addMarkersForJobs();
 },
 render:function(){
-  this.addMarkersForJobs();
 
-  return(
-    <div className= "map">
+ this.addMarkersForJobs();
+
+ return(
+  <div className= "map">
     <div className = "pure-u-1-1" ref="map_canvas" id="map_canvas">
     </div>
-
     <div>
-    { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob}/> : null }
+      { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob} address="true"/> : null }
     </div>
     <div>
-    { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
+      { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
     </div>
     <button className="pure-button button-secondary" onClick = {this.revealJobs}>See Jobs</button>
     <button className="pure-button button-secondary" onClick = {this.hideJobs}>Hide Jobs</button>
     <button className="pure-button button-secondary" onClick = {this.findMe}>Find Me</button>
-    
-    <button className="pure-button button-secondary" onClick = {this.removeAllMarkers}>REMOVE ALL</button>
-
-
     <a className="pure-button button-secondary" href="javascript:location.reload(true)">Refresh Page</a>
-
-    </div>
-    )
+  </div>
+  )
 }
-});
+})
 
 module.exports = GoogleMap;
