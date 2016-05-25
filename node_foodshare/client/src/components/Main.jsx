@@ -27,7 +27,7 @@ var Main = React.createClass({
   },
 
   forceUpdateState:function(object) {
-    this.setState(object)
+    this.setState(object);
   },
 
   setUser:function(user){

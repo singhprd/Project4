@@ -13,12 +13,11 @@ var CompanyView = React.createClass({
   },
   changeView: function(view) {
     this.setState({currentView: view});
-    
   },
   handleDeleteJob:function(job){
     var updatedJobs = this.props.jobs;  
     updatedJobs = _.without(updatedJobs, job);
-
+    console.log(updatedJobs)
     this.props.forceUpdateState({jobs: updatedJobs});
 
     var updateUrl = this.props.url + "jobs/" + job.id;
@@ -27,9 +26,7 @@ var CompanyView = React.createClass({
     request.open("DELETE", updateUrl, true );
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
-    // request.send(JSON.stringify(object))
-
-    this.props.fetchJobs();
+    request.send(JSON.stringify(object))
   },
   handleChooseJobForEdit: function(job){
     console.log(job)

@@ -41,7 +41,6 @@ var EditJobForm = React.createClass({
   render: function(){
     // console.log("reached render in EditJobForm")
     // console.log(this.props)
-    console.log(this.state)
       var FormView = (
         <div>
         <form className="pure-form pure-form-aligned">
