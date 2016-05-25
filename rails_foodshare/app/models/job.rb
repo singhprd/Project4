@@ -9,7 +9,7 @@ class Job < ActiveRecord::Base
     jobs = Job.all.to_a
 
     jobs = jobs.select do |job|
-      ( job.courier && (job.courier == user.courier) ||
+      ( job.courier && (job.courier == user.courier) && job.completed_date.nil? ||
         job.company && (job.company == user.company) ||
         (!job.courier && user.courier)
       )

@@ -32,14 +32,25 @@ var CourierView = React.createClass({
     request.send(JSON.stringify(object))
   },
 
+  handleCompleteJob:  function(job){
+    console.log("trying to send complete job to db")
+    var updateUrl = this.props.url + "jobs/" + job.id;  
+    var object = {completed: true};
+    var request = new XMLHttpRequest();
+    request.open("PUT", updateUrl, true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.send(JSON.stringify(object))
+  },
+
   render: function() {
     var toDisplay
     switch(this.state.currentView){
       case "mapview":
-        toDisplay = <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob} cancelJob={this.handleCancelJob}/>
+        toDisplay = <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob} onCancelJob={this.handleCancelJob} onCompleteJob={this.handleCompleteJob}/>
       break;
       case "showalljobs":
-        toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob}>Jobs</JobList>
+        toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.handleCompleteJob} >Jobs</JobList>
       break;
       default:
         console.log("default")

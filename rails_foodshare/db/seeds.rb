@@ -14,8 +14,8 @@ Job.destroy_all
 
 
 company_one = Company.create!(
-  name: "Sodeberg",
-  email: "sodeberg@email.com",
+  name: "Soderberg",
+  email: "soderberg@email.com",
   phone: "0131 441 1122",
   address1: "4 West End Way",
   address2: "West End",
@@ -35,6 +35,18 @@ company_two = Company.create!(
   postcode: "EH3 1WT",
   lat: 55.947250,
   lng: -3.191335
+)
+
+company_three = Company.create!(
+  name: "Edinburgh Larder",
+  email: "larder@email.com",
+  phone: "0131 692 5555",
+  address1: "15 Blackfriars Street",
+  address2: "Royal Mile",
+  address3: "Edinburgh",
+  postcode: "EH1 1NB",
+  lat: 55.949658,
+  lng: -3.185613
 )
 
 courier_one = Courier.create!(
@@ -97,12 +109,34 @@ job_three = Job.create!(
 )
 
 job_four = Job.create!(
-  company: company_one,
+  company: company_two,
   courier: nil,
-  item: "Bread",
+  item: "Bacon",
   quantity: 5,
-  instructions: "Bread needed. Please leave with reception.",
-  from_date: Date.parse("2016-05-22"),
-  to_date: Date.parse("2016-05-22"),
+  instructions: "Spare bacon, take today",
+  from_date: Date.parse("2016-05-20"),
+  to_date: Date.parse("2016-05-20"),
+  category: "Supply"
+)
+
+Job.create!(
+  company: company_three,
+  courier: nil,
+  item: "Coffee",
+  quantity: 10,
+  instructions: "Spare coffee for pickup with Dave",
+  from_date: Date.parse("2016-05-24"),
+  to_date: Date.parse("2016-05-24"),
+  category: "Supply"
+)
+
+Job.create!(
+  company: company_three,
+  courier: nil,
+  item: "Green beans",
+  quantity: 50,
+  instructions: "Beans needed for charity dinner",
+  from_date: Date.parse("2016-05-24"),
+  to_date: Date.parse("2016-05-24"),
   category: "Demand"
 )
