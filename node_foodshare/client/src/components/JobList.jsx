@@ -32,9 +32,16 @@ var JobList = React.createClass({
   },
 
   completeJob: function(e){
-    console.log("trying to complete job");
-    var job = this.findJob(this.props.jobs, e.target.value);
-    this.props.onCompleteJob(job);
+    
+ 
+       if (confirm("Just checking you completed this job and we can delete it from our database?") == true) {
+           var job = this.findJob(this.props.jobs, e.target.value);
+           this.props.onCompleteJob(job);
+       } else {
+           return null;
+       }
+       
+    
   },
 
   setMarkerState: function(job){
