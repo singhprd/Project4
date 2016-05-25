@@ -20,6 +20,8 @@ var CourierView = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.send(JSON.stringify(object));
+
+    this.props.fetchJobs();
   },
 
   handleCancelJob:function(job){
@@ -30,10 +32,12 @@ var CourierView = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.send(JSON.stringify(object))
+
+    this.props.fetchJobs();
   },
 
   handleCompleteJob:  function(job){
-    console.log("trying to send complete job to db")
+    // console.log("trying to send complete job to db")
     var updateUrl = this.props.url + "jobs/" + job.id;  
     var object = {completed: true};
     var request = new XMLHttpRequest();
@@ -41,6 +45,8 @@ var CourierView = React.createClass({
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
     request.send(JSON.stringify(object))
+
+    this.props.fetchJobs();
   },
 
   render: function() {
@@ -50,7 +56,9 @@ var CourierView = React.createClass({
         toDisplay = <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob} onCancelJob={this.handleCancelJob} onCompleteJob={this.handleCompleteJob}/>
       break;
       case "showalljobs":
+
         toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.handleCompleteJob} address="true">Jobs</JobList>
+
       break;
       default:
         console.log("default")

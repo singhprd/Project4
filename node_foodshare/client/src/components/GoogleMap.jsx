@@ -70,7 +70,7 @@ var GoogleMap = React.createClass({
     
    this.setState({showInfoButton: false});
    //too much?
-   location.reload(true);
+   // location.reload(true);
   },
   
 
@@ -146,7 +146,7 @@ var GoogleMap = React.createClass({
       { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob} address="true"/> : null }
       </div>
       <div>
-      { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.cancelJob} onCompleteJob={this.props.onCompleteJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
+      { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.props.onCompleteJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }
       </div>
       <button className="pure-button button-secondary" onClick = {this.revealJobs}>See Jobs</button>
       <button className="pure-button button-secondary" onClick = {this.hideJobs}>Hide Jobs</button>
