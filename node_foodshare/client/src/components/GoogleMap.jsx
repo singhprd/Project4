@@ -73,14 +73,13 @@ setJobMarkerEmpty:function(){
 addInfoWindow: function( latLng, image){
   var marker = this.addMarker(latLng, image);
   marker.addListener('click', function(){
+    // console.log(event.screenX);
+    // console.log(event.screenY);
     var jobIndices = [];
     this.props.jobs.forEach(function(job, index){
-      // console.log("latlng: ", latLng)
       if(job.company.position.lat == latLng.lat){
-        // console.log("reached here")
         jobIndices.push(index);
       }
-      // return jobIndices;
     }.bind(this))
     this.setState({ showInfoButton: true, showJobList: false, jobMarker: latLng});
   }.bind(this));
