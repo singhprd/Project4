@@ -38,6 +38,16 @@
 
 
 
+
+.address-header{
+  margin-bottom: 0;
+}
+
+.address-details{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /*googlemap div:*/
 #map_canvas{
   min-width: 200px;
@@ -65,18 +75,24 @@
   min-width: 200px;
   max-width: 300px;
   position: absolute;
-  top: 0;
+  top: 60px;
   right: 0;
   background-color: rgba(224,247,250,0.8);
 
 }
 
+.job{
+  margin-bottom: 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
 .job-available{
-  background-color: rgba(50,147,250,0.8);
+  background-color: rgba(255,152,0,0.4);
 }
 
 .job-taken{
-  background-color: rgba(224,40,150,0.8);
+  background-color: rgba(76,175,80,0.4);
 }
 
 /*/* not sure if this is required or not, mention of wrapping googlemap like this, this breaks the signout:*/
@@ -204,4 +220,11 @@
   /*add margin to pure buttons*/
   .pure-button {
     margin: 2px;
+  }
+  .button-small {
+    font-size: 85;
+    border-radius: 4px;
+    background: rgb(28, 184, 65);
+    padding: 3px;
+    color: white;
   }
