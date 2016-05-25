@@ -32,25 +32,6 @@ var ShowAllJobs = React.createClass({
   },
 
 
-  changeToEditView: function(e){
-    console.log(e.target.value)
-    this.props.changeView(e.target.value)
-    console.log(e.target.href)
-    // this.props.onChooseJobForEdit
-    // var job = this.findJob(this.props.jobs, e.target.value);
-    // return this.props.onUpdateJob(job);
-  },
-
-  // updateButton: function (job, index){
-  //   var updateButton =
-  //   return(
-  //     <div>
-  //     {updateButton}
-  //     </div>
-  //     )
-  // },
-
-
   render: function(){
     var jobs = this.props.jobs.map(function(job, index){
 

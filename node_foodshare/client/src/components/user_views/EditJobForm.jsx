@@ -12,7 +12,7 @@ var EditJobForm = React.createClass({
   mixins: [LinkedStateMixin],
 
   getInitialState: function() {
-    return {item:this.props.job.item,instructions:this.props.job.instructions,quantity:this.props.job.quantity, from_date: this.getTodaysDate(), to_date: this.getTodaysDate(), error:'', submited:false, category:this.props.job.category}
+    return {id: this.props.job.id, item:this.props.job.item,instructions:this.props.job.instructions,quantity:this.props.job.quantity, from_date: this.getTodaysDate(), to_date: this.getTodaysDate(), error:'', submited:false, category:this.props.job.category}
   },
 
  getTodaysDate: function() {

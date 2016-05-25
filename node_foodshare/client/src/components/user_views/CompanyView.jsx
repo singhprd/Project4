@@ -29,15 +29,13 @@ var CompanyView = React.createClass({
   },
   handleUpdateJob:function(job){
     console.log("trying to update", job)
+    var updateUrl = this.props.url + "jobs/" + job.id;
 
-
-    // var updateUrl = this.props.url + "jobs/" + job.id;
-
-    // var request = new XMLHttpRequest();
-    // requiest.open("PUT", updateUrl, true);
-    // requst.setRequestHeader("Content-Type", "application/json");
-    // request.withCredentials = true;
-    // request.send(JSON.stringify(job))
+    var request = new XMLHttpRequest();
+    request.open("PUT", updateUrl, true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.send(JSON.stringify(job))
   },
   render: function() {
     var toDisplay;
