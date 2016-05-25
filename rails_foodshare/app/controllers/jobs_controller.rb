@@ -22,9 +22,14 @@ class JobsController < ApplicationController
     if !current_user.company
       render :nothing => true, :status => :forbidden
     else
-      job = Job.create(job_params)
-      job.update(company_id: current_user.company_id)
-      render json: job.to_hash_for_company
+
+      begin
+        job = Job.create(job_params)
+        job.update(company_id: current_user.company_id)
+        render json: job.to_hash_for_company
+      rescue ArgumentError
+        render text: "Invalid date", status: :bad_request
+      end
     end
   end
 
@@ -105,7 +110,13 @@ class JobsController < ApplicationController
 
   private
   def job_params
-    params.require(:job).permit(:item, :quantity, :instructions, :from_date, :to_date, :category)
+    job_params = params.require(:job).permit(:item, :quantity, :instructions, :from_date, :to_date, :category)
+
+    # This will raise ArgumentError if date is invalid
+    Date.parse(job_params[:from_date]) if job_params[:from_date]
+    Date.parse(job_params[:to_date]) if job_params[:to_date]
+
+    return job_params
   end
 
 end
