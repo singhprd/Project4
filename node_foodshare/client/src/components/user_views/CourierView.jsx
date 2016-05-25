@@ -13,18 +13,16 @@ var CourierView = React.createClass({
     this.setState({currentView: view});
   },
   handleTakeJob:function(job){
-    console.log(this.props.user);
     var updateUrl = this.props.url + "jobs/" + job.id;
     var object = {accepted: true};
     var request = new XMLHttpRequest();
     request.open("PUT", updateUrl, true);
     request.setRequestHeader("Content-Type", "application/json");
     request.withCredentials = true;
-    request.send(JSON.stringify(object))
+    request.send(JSON.stringify(object));
   },
 
   handleCancelJob:function(job){
-    console.log("hello");
     var updateUrl = this.props.url + "jobs/" + job.id;  
     var object = {accepted: false};
     var request = new XMLHttpRequest();
@@ -41,7 +39,7 @@ var CourierView = React.createClass({
         toDisplay = <GoogleMap jobs={this.props.jobs} onTakeJob={this.handleTakeJob} cancelJob={this.handleCancelJob}/>
       break;
       case "showalljobs":
-        toDisplay = <JobList jobs={this.props.jobs}>Jobs</JobList>
+        toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob}>Jobs</JobList>
       break;
       default:
         console.log("default")

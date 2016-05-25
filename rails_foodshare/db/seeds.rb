@@ -68,7 +68,7 @@ job_one = Job.create!(
   courier: courier_two,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread available. Pick up between 3pm and 6pm. Company 1, courier 2",
+  instructions: "Bread available. Pick up between 3pm and 6pm.",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Supply"
@@ -79,7 +79,7 @@ job_two = Job.create!(
   courier: courier_one,
   item: "Butter",
   quantity: 2,
-  instructions: "Butter available. Pick up between 3pm and 6pm. Company 2, courier 1",
+  instructions: "Butter available. Pick up between 3pm and 6pm.",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Supply"
@@ -90,7 +90,7 @@ job_three = Job.create!(
   courier: courier_one,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread needed. Please leave with reception. Company 1, courier 1",
+  instructions: "Bread needed. Please leave with reception.",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Demand"
@@ -101,7 +101,7 @@ job_four = Job.create!(
   courier: nil,
   item: "Bread",
   quantity: 5,
-  instructions: "Bread needed. Please leave with reception. Company 1, no courier",
+  instructions: "Bread needed. Please leave with reception.",
   from_date: Date.parse("2016-05-22"),
   to_date: Date.parse("2016-05-22"),
   category: "Demand"

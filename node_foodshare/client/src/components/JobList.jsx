@@ -17,7 +17,9 @@ var JobList = React.createClass({
     // console.log(e.target.value)
     // e.preventDefault;
     var job = this.findJob(this.props.jobs, e.target.value);
-    this.props.onTakeJob(job);
+   return this.props.onTakeJob(job);
+
+    
     // this.setMarkerState(job);
     // return this.props.onTakeJob();
   },
@@ -26,6 +28,7 @@ var JobList = React.createClass({
     console.log("cancel job");
     var job = this.findJob(this.props.jobs, e.target.value);
     return this.props.onCancelJob(job);
+
   },
 
   setMarkerState: function(job){
