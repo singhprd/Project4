@@ -143,7 +143,7 @@ var GoogleMap = React.createClass({
      </div>
 
       <div>
-      { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob}/> : null }
+      { this.state.showJobList ? <JobList onTakeJob={this.props.onTakeJob} jobs={this.props.jobs} onCompleteJob={this.props.onCompleteJob} address="true"/> : null }
       </div>
       <div>
       { this.state.showInfoButton ? <InfoButton onTakeJob={this.props.onTakeJob} onCancelJob={this.props.cancelJob} onCompleteJob={this.props.onCompleteJob} job={this.state.jobMarker} onCloseClick={this.setJobMarkerEmpty} /> : null }

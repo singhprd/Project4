@@ -73,6 +73,19 @@ var JobList = React.createClass({
     
   },
 
+  addressComponent: function(job){
+    if(this.props.address){
+      return <Address address = {job.company.contactDetails}/>
+    } else {
+      return null;
+    }
+
+  },
+
+  // renderMultipleJobsForOneCompany: function(){
+
+  // },
+
   render:function(){
     var jobs = this.props.jobs.map(function(job, index){
       
@@ -84,12 +97,13 @@ var JobList = React.createClass({
         method = " delivered to ";
       }
       
-      return (<div key={index} jobIndex={index}>
-      <li className={this.jobStyle(job)}>
-      {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
-      </li>
-      <Address address = {job.company.contactDetails}/>  
-      {this.jobButtons(job, index)}
+      return (
+      <div key={index} jobIndex={index}>
+        <li className={this.jobStyle(job)}>
+        {job. quantity} x {job.item} to be {method} {job.company.name} from {job.from_date} to {job.to_date} <br/>Instructions: {job.instructions}
+        </li>
+        {this.addressComponent(job)}
+        {this.jobButtons(job, index)}
       </div>)
     }.bind(this))
 
