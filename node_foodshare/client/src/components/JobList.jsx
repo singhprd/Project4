@@ -32,9 +32,16 @@ var JobList = React.createClass({
   },
 
   completeJob: function(e){
-    console.log("trying to complete job");
-    var job = this.findJob(this.props.jobs, e.target.value);
-    this.props.onCompleteJob(job);
+    
+ 
+       if (confirm("Just checking you completed this job and we can delete it from our database?") == true) {
+           var job = this.findJob(this.props.jobs, e.target.value);
+           this.props.onCompleteJob(job);
+       } else {
+           return null;
+       }
+       
+    
   },
 
   setMarkerState: function(job){
@@ -43,7 +50,7 @@ var JobList = React.createClass({
 
   jobButtons: function(job, index){
     var takeJobButton = <button className= "pure-button button-small" onClick = {this.takeJob} value = {index}>Take Job</button>
-    var cancelJobButton = <button className= "pure-button button-small" onClick = {this.cancelJob} value = {index}>Cancel My Job</button>
+    var cancelJobButton = <button className= "pure-button button-small" onClick = {this.cancelJob} value = {index}>Release Job</button>
     var completeJobButton = <button className= "pure-button button-small"onClick = {this.completeJob} value = {index}> Complete Job </button>
 
     // edit
@@ -108,11 +115,8 @@ var JobList = React.createClass({
     }.bind(this))
 
     return(
-      <div>
-        <ul>
+      <div>  
         {jobs}
-        </ul>
-
       </div>
       )
   }

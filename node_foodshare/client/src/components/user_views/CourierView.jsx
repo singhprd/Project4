@@ -57,7 +57,7 @@ var CourierView = React.createClass({
       break;
       case "showalljobs":
 
-        toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.props.onTakeJob} onCancelJob={this.props.onCancelJob} onCompleteJob={this.handleCompleteJob} address="true">Jobs</JobList>
+        toDisplay = <JobList jobs={this.props.jobs} onTakeJob={this.handleTakeJob} onCancelJob={this.handleCancelJob} onCompleteJob={this.handleCompleteJob} address="true">Jobs</JobList>
 
       break;
       default:

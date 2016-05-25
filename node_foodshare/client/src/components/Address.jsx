@@ -11,16 +11,14 @@ var Address = React.createClass({
     //   return (<div> <li key ={index}> {job.company.contactDetails.address1} </li><li> {job.company.contactDetails.address2} </li><li> {job.company.contactDetails.address3} </li><li> {job.company.contactDetails.postcode} </li><li> {job.company.contactDetails.phone} </li></div>) ;
     // });
 
-
-
     return(
-      <div>
+      <div className = "address-box">
         <ul>
         <h4 className="address-header">{this.props.company.name}</h4>
         <p className="address-details">{this.props.company.contactDetails.address1}, {this.props.company.contactDetails.address2}, {this.props.company.contactDetails.address3} </p>
         <p className="address-details">{this.props.company.contactDetails.postcode}</p>
-        <li>{this.props.company.contactDetails.phone}</li>
-        <li>{this.props.company.contactDetails.email}</li>
+        <p className="address-details">Phone: {this.props.company.contactDetails.phone}</p>
+        <a href ={"mailto:" + this.props.company.contactDetails.email}>{this.props.company.contactDetails.email}</a>
         </ul>
 
 

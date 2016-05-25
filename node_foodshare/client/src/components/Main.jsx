@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 var React = require('react');
 var SignIn = require('./authentication/SignIn.jsx');
 var SignUp = require('./authentication/SignUp.jsx');
@@ -42,7 +44,10 @@ var Main = React.createClass({
     request.onload = function(){
       if(request.status === 200){
         var jobs = JSON.parse(request.responseText);
-        this.setState({jobs: jobs})
+        if ( !_.isEqual(jobs, this.state.jobs) ) {
+          this.setState({jobs: jobs});
+        }
+        setTimeout(this.fetchJobs, 1000);
       }
     }.bind(this)
     request.send(null);
