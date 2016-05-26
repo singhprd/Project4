@@ -62,36 +62,27 @@ class JobsController < ApplicationController
     accepted = params[:accepted]
     completed = params[:completed]
 
-    if !accepted.nil? && !completed.nil?
-      render text: 'Please include either an "accepted" or a "completed" field, but not both.', status: :bad_request
-    elsif !accepted.nil?
-      if    accepted == true &&
-            !job.courier_id
-        job.update(courier_id: current_user.courier_id)
-        render json: job.to_hash_for_courier
-      elsif accepted == false &&
-            job.courier_id == current_user.courier_id
-        job.update(courier_id: nil)
-        render json: job.to_hash_for_courier
-      else
-        render nothing: true, status: :bad_request
+    begin
+      if  (!accepted.nil? && !completed.nil?) ||
+          (accepted.nil? && completed.nil?)
+        raise ArgumentError.new('Please include either an "accepted" or a "completed" field (but not both).')
       end
-    elsif !completed.nil?
-      if    completed == true &&
-            job.courier_id == current_user.courier_id &&
-            job.completed_date.nil?
-        job.update(completed_date: DateTime.now)
+
+      if !accepted.nil?
+        job.assign_courier(current_user.courier) if accepted == true
+        job.unassign_courier(current_user.courier) if accepted == false
+
         render json: job.to_hash_for_courier
-      elsif completed == false &&
-            job.courier_id == current_user.courier_id &&
-            !job.completed_date.nil?
-        job.update(completed_date: nil)
-        render json: job.to_hash_for_courier
-      else
-        render nothing: true, status: :bad_request
       end
-    else
-      render text: 'Please include either an "accepted" or a "completed" field.', status: :bad_request
+
+      if !completed.nil?
+        job.complete(current_user.courier) if completed == true
+        job.uncomplete(current_user.courier) if completed == false
+
+        render json: job.to_hash_for_courier
+      end
+    rescue ArgumentError => e
+      render text: e.message, status: :bad_request
     end
   end
 

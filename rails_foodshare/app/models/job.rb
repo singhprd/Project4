@@ -46,7 +46,29 @@ class Job < ActiveRecord::Base
     }
   end
 
-  # def set_courier(courier)
+  def assign_courier(courier)    
+    raise ArgumentError.new('Cannot assign courier to job: courier already assigned') if courier_id
 
-  # end
+    update(courier_id: courier.id)
+  end
+
+  def unassign_courier(courier)
+    raise ArgumentError.new('Cannot unassign courier from job: this courier is not currently assigned') if courier_id != courier.id
+    
+    update(courier_id: nil)
+  end
+
+  def complete(courier)
+    raise ArgumentError.new('Cannot complete job: assigned to different courier') if courier_id != courier.id
+    raise ArgumentError.new('Cannot complete job: already completed') if !completed_date.nil?
+
+    update(completed_date: DateTime.now)
+  end
+
+  def uncomplete(courier)
+    raise ArgumentError.new('Cannot uncomplete job: assigned to different courier') if courier_id != courier.id
+    raise ArgumentError.new('Cannot uncomplete job: not completed yet') if completed_date.nil?
+
+    update(completed_date: nil)
+  end
 end
