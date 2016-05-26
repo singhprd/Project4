@@ -56,7 +56,7 @@ class Job < ActiveRecord::Base
 
   def unassign_courier(courier)
     raise ArgumentError.new(
-      'Cannot unassign courier from job: this courier is not currently assigned'
+      'Cannot unassign courier from job: assigned to different courier'
     ) if courier_id != courier.id
 
     update(courier_id: nil)
