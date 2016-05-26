@@ -79,7 +79,7 @@ var EditJobForm = React.createClass({
         </div>
 
         <div className="pure-controls">
-        <button onClick={this.handleSubmit} type="submit" className="pure-button pure-button-primary"> <i className="fa fa-check" aria-hidden="true"></i> Submit</button>
+        <button onClick={this.handleSubmit} type="submit" className="pure-button pure-button-primary"> <i className="fa fa-check" aria-hidden="true"></i> Update</button>
         </div>
         </fieldset>
         </form>
