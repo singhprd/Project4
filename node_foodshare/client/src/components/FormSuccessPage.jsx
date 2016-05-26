@@ -3,7 +3,7 @@ var React = require('react');
 var FormSuccessPage = React.createClass({
   handleClick:function(e){
     e.preventDefault();
-    this.props.changeView("foodForm");
+    this.props.changeView("donations");
   },
   render:function() {
     return ( 
