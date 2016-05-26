@@ -114,12 +114,12 @@ class JobTest < ActiveSupport::TestCase
     )
   end
 
-  # test "can assign a courier to an unclaimed job" do
-  #   job = jobs(:three) # job with no courier_id
-  #   courier = couriers(:one)
+  test "can assign a courier to an unclaimed job" do
+    job = jobs(:three) # job with no courier_id
+    courier = couriers(:one)
 
-  #   job.set_courier(courier)
-  #   assert_equal(courier.id, job.courier_id)
-  # end
+    job.assign_courier(courier)
+    assert_equal(courier.id, job.courier_id)
+  end
 
 end
