@@ -59,25 +59,29 @@ class JobsController < ApplicationController
     id = params[:id].to_i
     job = Job.find(id)
 
+    courier = current_user.courier
+
     accepted = params[:accepted]
     completed = params[:completed]
 
     begin
       if  (!accepted.nil? && !completed.nil?) ||
           (accepted.nil? && completed.nil?)
-        raise ArgumentError.new('Please include either an "accepted" or a "completed" field (but not both).')
+        raise ArgumentError.new(
+          'Please include either an "accepted" or a "completed" field (but not both).'
+        )
       end
 
       if !accepted.nil?
-        job.assign_courier(current_user.courier) if accepted == true
-        job.unassign_courier(current_user.courier) if accepted == false
+        job.assign_courier(courier) if accepted == true
+        job.unassign_courier(courier) if accepted == false
 
         render json: job.to_hash_for_courier
       end
 
       if !completed.nil?
-        job.complete(current_user.courier) if completed == true
-        job.uncomplete(current_user.courier) if completed == false
+        job.complete(courier) if completed == true
+        job.uncomplete(courier) if completed == false
 
         render json: job.to_hash_for_courier
       end
