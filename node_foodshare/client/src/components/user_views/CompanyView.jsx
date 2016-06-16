@@ -7,6 +7,7 @@ var ShowAllJobs = require('../ShowAllJobs.jsx')
 var JobList = require('../JobList.jsx')
 var EditJobForm = require('./EditJobForm.jsx')
 var FormSuccessPage = require('../FormSuccessPage.jsx')
+
 // var DatePicker = require('../DatePicker.jsx')
 var CompanyView = React.createClass({
   getInitialState: function() {
@@ -28,9 +29,11 @@ var CompanyView = React.createClass({
     request.withCredentials = true;
     request.send(JSON.stringify(object))
   },
+  
   handleChooseJobForEdit: function(job){
     this.setState({selectedJobForEdit: job})
   },
+
   handleUpdateJob:function(job){
     var updateUrl = this.props.url + "jobs/" + job.id;
     var request = new XMLHttpRequest();
@@ -44,6 +47,7 @@ var CompanyView = React.createClass({
     }.bind(this);
     request.send(JSON.stringify(job))
   },
+
   render: function() {
     var toDisplay;
     switch(this.state.currentView) {
